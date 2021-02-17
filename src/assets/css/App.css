@@ -8,8 +8,8 @@
 * {
     box-sizing: border-box;
     font-family: "Roboto", sans-serif;
-    color: white;
-    background: var(--bg);
+    /* color: white;
+    background: var(--bg); */
 }
 
 /* ===============
@@ -37,16 +37,62 @@ a {
        FOOTER      
 /* ============= */
 .footer {
+    margin-top: 10px;
     height: 100px;
     color: white;
+
+    background: var(--bg);
 }
 .footer strong,
 .footer a {
     text-decoration: none;
     font-weight: bold;
+    color: white;
 }
 .footer {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/* ===============
+    CHARACTERS      
+/* ============= */
+.characters {
+    background: pink;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 30px auto;
+    width: 1024px;
+    height: 100%;
+}
+/* card */
+.character-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 350px;
+    width: 200px;
+    background: white;
+    border: 1px solid yellow;
+}
+.character-card img {
+    height: 300px;
+    width: 200px;
+    object-fit: fill;
+    object-position: center;
+    margin-bottom: 10px;
+}
+.character-card span {
+    margin-bottom: 10px;
+    padding: 0 10px;
+}
+.character-card p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 36px;
+    width: 190px;
+    padding: 0 10px;
+    margin-bottom: 10px;
 }
