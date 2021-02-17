@@ -16,6 +16,7 @@ function App() {
     const [isLoading, setIsLoading] = useState(true);
     const [search, setSearch] = useState("");
     const [page, setPage] = useState(1);
+    const [maxPage, setMaxPage] = useState("");
 
     useEffect(() => {
         //axios request
@@ -24,8 +25,9 @@ function App() {
                 const response = await axios.get(
                     `https://cathy-marvel-backend.herokuapp.com/characters?name=${search}&page=${page}`
                 );
-                console.log("data", response.data); //data {count: 1493, limit: 100, results: Array(100)}count: 1493limit: 100results: (100) [{…},  {…}, ]__proto__: Object
+                // console.log("data", response.data); //data {count: 1493, limit: 100, results: Array(100)}count: 1493limit: 100results: (100) [{…},  {…}, ]__proto__: Object
                 setData(response.data);
+                setMaxPage(Math.ceil(response.data.count / 100));
                 setIsLoading(false);
             } catch (error) {
                 console.log(error.response);
@@ -46,7 +48,11 @@ function App() {
                     <Favorites />
                 </Route>
                 <Route path="/">
-                    <Characters data={data} />
+                    <Characters
+                        data={data}
+                        maxPage={maxPage}
+                        setPage={setPage}
+                    />
                 </Route>
             </Switch>
             <Footer />
