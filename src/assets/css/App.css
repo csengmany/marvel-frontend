@@ -13,6 +13,27 @@
 }
 
 /* ===============
+       HEADER      
+/* ============= */
+.logo {
+    height: 50px;
+}
+header {
+    border-bottom: white 1px solid;
+    height: 100%;
+}
+/* ===============
+       MENU      
+/* ============= */
+nav a {
+    text-decoration: none;
+}
+li,
+a {
+    display: inline-block;
+    margin-right: 10px;
+}
+/* ===============
        FOOTER      
 /* ============= */
 .footer {

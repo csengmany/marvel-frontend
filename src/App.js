@@ -7,6 +7,7 @@ import Header from "./assets/js/components/Header";
 //import containers
 import Characters from "./assets/js/containers/Characters";
 import Comics from "./assets/js/containers/Comics";
+import Favorites from "./assets/js/containers/Favorites";
 
 function App() {
     return (
@@ -15,6 +16,9 @@ function App() {
             <Switch>
                 <Route path="/comics">
                     <Comics />
+                </Route>
+                <Route path="/favorites">
+                    <Favorites />
                 </Route>
                 <Route path="/">
                     <Characters />

@@ -1,5 +1,5 @@
 const Characters = () => {
-    return <div>Characters</div>;
+    return <div>Characters container</div>;
 };
 
 export default Characters;

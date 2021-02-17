@@ -1,9 +1,11 @@
 import logo from "../../images/marvel.svg";
+import Menu from "./Menu";
 const Header = () => {
     return (
-        <div>
-            <img src={logo} alt="marvel logo" />
-        </div>
+        <header>
+            <img src={logo} alt="marvel logo" className="logo" />
+            <Menu />
+        </header>
     );
 };
 
