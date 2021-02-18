@@ -1,5 +1,5 @@
 import circle from "../../images/explore-no-img.jpg";
-const Picture = ({ picture }) => {
+const Picture = ({ picture, name }) => {
     return (
         <div className="picture">
             <img
@@ -13,7 +13,7 @@ const Picture = ({ picture }) => {
                           "." +
                           picture.thumbnail.extension
                 }
-                alt="ironman"
+                alt={name}
             />
         </div>
     );

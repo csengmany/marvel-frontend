@@ -15,7 +15,7 @@ const CharacterCard = ({ character }) => {
             onClick={() => handleClick(character._id)}
         >
             <div className="card-img">
-                <Picture picture={character} />
+                <Picture picture={character} name={character.name} />
             </div>
 
             <div className="card-txt">

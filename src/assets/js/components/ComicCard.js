@@ -5,7 +5,7 @@ import Picture from "./Picture";
 const ComicCard = ({ comic }) => {
     return (
         <div className="comic-card" onClick={() => {}}>
-            <Picture picture={comic} />
+            <Picture picture={comic} name={comic.title} />
             <div className="card-txt-wrapper">
                 <div className="card-txt">
                     <div>

@@ -192,3 +192,41 @@ a {
     margin-top: 10px;
     font-weight: lighter;
 }
+
+/* ===============
+    CHARACTER ID     
+/* ============= */
+.character {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.character div {
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.character h1 {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+
+    margin-bottom: 30px;
+}
+
+.character p {
+    font-size: 18px;
+    margin-left: 20px;
+    width: 70vw;
+}
+.character-id .picture img {
+    width: 250px;
+    height: auto;
+    object-fit: cover;
+    object-position: top;
+}
