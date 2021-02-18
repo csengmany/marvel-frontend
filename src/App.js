@@ -2,6 +2,7 @@ import "./assets/css/App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
 
 //import components
 import Footer from "./assets/js/components/Footer";
@@ -13,8 +14,9 @@ import Favorites from "./assets/js/containers/Favorites";
 import Character from "./assets/js/containers/Character";
 //import fontawesome
 import { library } from "@fortawesome/fontawesome-svg-core";
+import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import { faBookmark } from "@fortawesome/free-regular-svg-icons";
-library.add(faBookmark);
+library.add(faBookmark, faCaretRight, faCaretLeft);
 
 function App() {
     const [data, setData] = useState([]);
@@ -22,6 +24,8 @@ function App() {
     const [search, setSearch] = useState("");
     const [page, setPage] = useState(1);
     const [maxPage, setMaxPage] = useState("");
+    const [charactersFavorite, setCharactersFavorites] = useState([]);
+    const [comicsFavorite, setComicsFavorites] = useState([]);
 
     useEffect(() => {
         //axios request
@@ -59,7 +63,10 @@ function App() {
                     <Characters
                         data={data}
                         maxPage={maxPage}
+                        page={page}
                         setPage={setPage}
+                        charactersFavorite={charactersFavorite}
+                        setCharactersFavorites={setCharactersFavorites}
                     />
                 </Route>
             </Switch>

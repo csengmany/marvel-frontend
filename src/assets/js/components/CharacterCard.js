@@ -6,6 +6,7 @@ import Picture from "./Picture";
 const CharacterCard = ({ character }) => {
     const history = useHistory();
 
+    const handleBookmarkClick = (character) => {};
     const handleClick = (id) => {
         return history.push(`/comics/${id}`);
     };
@@ -21,7 +22,11 @@ const CharacterCard = ({ character }) => {
             <div className="card-txt">
                 <div>
                     <span>{character.name}</span>
-                    <FontAwesomeIcon icon={faBookmark} className="bookmark" />
+                    <FontAwesomeIcon
+                        icon={faBookmark}
+                        className="bookmark"
+                        onClick={() => handleBookmarkClick(character)}
+                    />
                 </div>
 
                 <p>

@@ -33,12 +33,13 @@ const Comics = ({ search }) => {
         "Loading..."
     ) : (
         <div className="comics-wrapper">
+            <h1>COMICS</h1>
             <div className="comics">
                 {data.results.map((comic) => {
                     return <ComicCard comic={comic} />;
                 })}
             </div>
-            <Pages maxPage={maxPage} setPage={setPage} />
+            <Pages maxPage={maxPage} setPage={setPage} page={page} />
         </div>
     );
 };

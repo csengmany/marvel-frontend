@@ -54,6 +54,7 @@ const Character = () => {
                 <p>{data.description}</p>
             </div>
             <div className="character-comics">
+                <h2>{data.name.toUpperCase()}&nbsp;COMICS</h2>
                 {data.comics.map((comic, index) => {
                     return <ComicCard comic={comic} key={index} />;
                 })}

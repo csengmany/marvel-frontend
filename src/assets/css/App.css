@@ -230,3 +230,49 @@ a {
     object-fit: cover;
     object-position: top;
 }
+h1 {
+    font-size: 35px;
+    text-align: left;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+h2 {
+    font-size: 20px;
+    text-align: left;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.pages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.pages > svg {
+    color: gray;
+}
+.pages button {
+    margin: 0 5px;
+}
+.pages > div {
+    cursor: pointer;
+}
+.pages > div:hover {
+    color: var(--primary);
+}
+button {
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: white;
+}
+.btn-txt {
+    font-size: 14px;
+}
+button:hover {
+    color: var(--primary);
+}
