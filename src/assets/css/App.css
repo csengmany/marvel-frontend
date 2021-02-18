@@ -9,30 +9,73 @@
     box-sizing: border-box;
     font-family: "Roboto", sans-serif;
 }
-
+.characters-container,
+.character-container,
+.comics-container,
+.favorites-container {
+    padding: 0 80px;
+}
 /* ===============
        HEADER      
 /* ============= */
+header {
+    padding: 0 80px;
+    color: white;
+    background: var(--bg);
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .logo {
     height: 50px;
     cursor: pointer;
 }
-header {
-    height: 100%;
+
+form input,
+form button {
+    display: inline-block;
+    outline: none;
+    border: 1px solid var(--dark);
+    background: var(--dark);
     color: white;
-    background: var(--bg);
+}
+form input {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+form button {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+form input:focus {
+    border-color: var(--primary);
 }
 /* ===============
        MENU      
 /* ============= */
-nav a {
-    text-decoration: none;
-}
+
 li,
 a {
     display: inline-block;
     margin-right: 10px;
 }
+li a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+    height: 50px;
+    font-weight: bold;
+}
+li a:hover {
+    background-color: var(--primary);
+}
+
 /* ===============
        FOOTER      
 /* ============= */
@@ -157,8 +200,7 @@ a {
 /* ===============
        COMICS      
 /* ============= */
-.comics-wrapper {
-}
+
 .comics {
     display: flex;
     flex-wrap: wrap;
@@ -224,7 +266,7 @@ a {
     margin-left: 20px;
     width: 70vw;
 }
-.character-id .picture img {
+.character-container .picture img {
     width: 250px;
     height: auto;
     object-fit: cover;

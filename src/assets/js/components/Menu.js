@@ -4,13 +4,13 @@ const Menu = () => {
         <nav>
             <ul>
                 <li>
-                    <Link to="/">Characters</Link>
+                    <Link to="/">CHARACTERS</Link>
                 </li>
                 <li>
-                    <Link to="/comics">Comics</Link>
+                    <Link to="/comics">COMICS</Link>
                 </li>
                 <li>
-                    <Link to="/favorites">Favorites</Link>
+                    <Link to="/favorites">FAVORITES</Link>
                 </li>
             </ul>
         </nav>

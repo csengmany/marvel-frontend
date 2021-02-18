@@ -32,7 +32,7 @@ const Comics = ({ search }) => {
     return isLoading ? (
         "Loading..."
     ) : (
-        <div className="comics-wrapper">
+        <div className="comics-container">
             <h1>COMICS</h1>
             <div className="comics">
                 {data.results.map((comic) => {

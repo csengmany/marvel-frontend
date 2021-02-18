@@ -45,7 +45,7 @@ const Character = () => {
     return isLoading ? (
         "Loading..."
     ) : (
-        <div className="character-id">
+        <div className="character-container">
             <div className="character">
                 <div>
                     <h1>{data.name}</h1>

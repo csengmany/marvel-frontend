@@ -2,7 +2,7 @@ import "./assets/css/App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 
 //import components
 import Footer from "./assets/js/components/Footer";
@@ -14,18 +14,28 @@ import Favorites from "./assets/js/containers/Favorites";
 import Character from "./assets/js/containers/Character";
 //import fontawesome
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
+import {
+    faCaretLeft,
+    faCaretRight,
+    faSearch,
+} from "@fortawesome/free-solid-svg-icons";
 import { faBookmark } from "@fortawesome/free-regular-svg-icons";
-library.add(faBookmark, faCaretRight, faCaretLeft);
+library.add(faBookmark, faCaretRight, faCaretLeft, faSearch);
 
 function App() {
+    //state to save data of axios request
     const [data, setData] = useState([]);
+    //display message when page is loading
     const [isLoading, setIsLoading] = useState(true);
+    //state of query params
     const [search, setSearch] = useState("");
     const [page, setPage] = useState(1);
+    //other states
     const [maxPage, setMaxPage] = useState("");
     const [charactersFavorite, setCharactersFavorites] = useState([]);
-    const [comicsFavorite, setComicsFavorites] = useState([]);
+    // const [comicsFavorite, setComicsFavorites] = useState([]);
+    //create intemerdiate to launch search when user submit the search
+    const [textInput, setTextInput] = useState("");
 
     useEffect(() => {
         //axios request
@@ -48,7 +58,12 @@ function App() {
         "Loading..."
     ) : (
         <Router>
-            <Header search={search} setSearch={setSearch} />
+            <Header
+                search={search}
+                setSearch={setSearch}
+                textInput={textInput}
+                setTextInput={setTextInput}
+            />
             <Switch>
                 <Route path="/comics/:characterId">
                     <Character />
