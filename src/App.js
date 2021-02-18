@@ -10,6 +10,11 @@ import Header from "./assets/js/components/Header";
 import Characters from "./assets/js/containers/Characters";
 import Comics from "./assets/js/containers/Comics";
 import Favorites from "./assets/js/containers/Favorites";
+import Character from "./assets/js/containers/Character";
+//import fontawesome
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faBookmark } from "@fortawesome/free-regular-svg-icons";
+library.add(faBookmark);
 
 function App() {
     const [data, setData] = useState([]);
@@ -41,6 +46,9 @@ function App() {
         <Router>
             <Header search={search} setSearch={setSearch} />
             <Switch>
+                <Route path="/comics/:characterId">
+                    <Character />
+                </Route>
                 <Route path="/comics">
                     <Comics />
                 </Route>
