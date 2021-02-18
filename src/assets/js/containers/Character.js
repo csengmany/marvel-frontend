@@ -18,8 +18,6 @@ const Character = () => {
             try {
                 const response = await axios.get(
                     `https://cathy-marvel-backend.herokuapp.com/comics/${characterId}`
-                    //${characterId}`
-                    // ?title=${search}&page=${page}`
                 );
                 console.log("data", response.data); //data {count: 1493, limit: 100, results: Array(100)}count: 1493limit: 100results: (100) [{…},  {…}, ]__proto__: Object
                 setData(response.data);

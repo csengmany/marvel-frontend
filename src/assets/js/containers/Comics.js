@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ComicCard from "../components/ComicCard";
+import Pages from "../components/Pages";
 
 const Comics = ({ search }) => {
     const [data, setData] = useState([]);
@@ -16,7 +17,7 @@ const Comics = ({ search }) => {
                 const response = await axios.get(
                     `https://cathy-marvel-backend.herokuapp.com/comics?title=${search}&page=${page}`
                 );
-                console.log("data", response.data); //data {count: 1493, limit: 100, results: Array(100)}count: 1493limit: 100results: (100) [{…},  {…}, ]__proto__: Object
+                console.log("data comics page", response.data);
                 setData(response.data);
                 if (data.count) {
                     setMaxPage(Math.ceil(response.data.count / 100));
@@ -34,24 +35,10 @@ const Comics = ({ search }) => {
         <div className="comics-wrapper">
             <div className="comics">
                 {data.results.map((comic) => {
-                    console.log("comic sans id");
-
                     return <ComicCard comic={comic} />;
                 })}
             </div>
-            <span className="home-page">Page : </span>
-            {new Array(maxPage).fill(1).map((item, index) => {
-                return (
-                    <button
-                        key={index}
-                        onClick={() => {
-                            setPage(index + 1);
-                        }}
-                    >
-                        {index + 1}
-                    </button>
-                );
-            })}
+            <Pages maxPage={maxPage} setPage={setPage} />
         </div>
     );
 };

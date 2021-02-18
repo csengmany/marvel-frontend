@@ -30,7 +30,7 @@ function App() {
                 const response = await axios.get(
                     `https://cathy-marvel-backend.herokuapp.com/characters?name=${search}&page=${page}`
                 );
-                // console.log("data", response.data); //data {count: 1493, limit: 100, results: Array(100)}count: 1493limit: 100results: (100) [{…},  {…}, ]__proto__: Object
+                console.log("data Home page", response.data);
                 setData(response.data);
                 setMaxPage(Math.ceil(response.data.count / 100));
                 setIsLoading(false);

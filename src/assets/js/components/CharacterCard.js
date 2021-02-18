@@ -1,13 +1,12 @@
-import circle from "../../images/explore-no-img.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useHistory } from "react-router-dom";
 import { faBookmark } from "@fortawesome/free-regular-svg-icons";
+import Picture from "./Picture";
 
-const Card = ({ character }) => {
+const CharacterCard = ({ character }) => {
     const history = useHistory();
 
     const handleClick = (id) => {
-        console.log(id);
         return history.push(`/comics/${id}`);
     };
     return (
@@ -16,19 +15,7 @@ const Card = ({ character }) => {
             onClick={() => handleClick(character._id)}
         >
             <div className="card-img">
-                <img
-                    src={
-                        character.thumbnail.path ===
-                            "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" ||
-                        character.thumbnail.path ===
-                            "http://i.annihil.us/u/prod/marvel/i/mg/f/60/4c002e0305708"
-                            ? circle
-                            : character.thumbnail.path +
-                              "." +
-                              character.thumbnail.extension
-                    }
-                    alt="ironman"
-                />
+                <Picture picture={character} />
             </div>
 
             <div className="card-txt">
@@ -47,4 +34,4 @@ const Card = ({ character }) => {
     );
 };
 
-export default Card;
+export default CharacterCard;
