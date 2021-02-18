@@ -8,8 +8,6 @@
 * {
     box-sizing: border-box;
     font-family: "Roboto", sans-serif;
-    /* color: white;
-    background: var(--bg); */
 }
 
 /* ===============
@@ -17,10 +15,12 @@
 /* ============= */
 .logo {
     height: 50px;
+    cursor: pointer;
 }
 header {
-    border-bottom: white 1px solid;
     height: 100%;
+    color: white;
+    background: var(--bg);
 }
 /* ===============
        MENU      
@@ -59,8 +59,8 @@ a {
     CHARACTERS      
 /* ============= */
 .characters {
-    background: pink;
     display: flex;
+
     flex-wrap: wrap;
     margin: 30px auto;
     width: 1024px;
@@ -70,33 +70,85 @@ a {
 .character-card {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    height: 350px;
-    width: 200px;
-    background: white;
-    border: 1px solid yellow;
+    height: auto;
+    width: 220px;
+    flex: 1;
+    color: white;
+    background: var(--bg);
+
     cursor: pointer;
+    margin: 5px;
 }
+.character-card:nth-child(1),
+.character-card:nth-child(2),
+.character-card:nth-child(3),
+.character-card:nth-child(4),
+.character-card:nth-child(5) {
+    margin-top: 0;
+}
+.character-card:nth-last-child(5),
+.character-card:nth-last-child(1),
+.character-card:nth-last-child(2),
+.character-card:nth-last-child(3),
+.character-card:nth-last-child(4) {
+    margin-bottom: 0;
+}
+
+.character-card:nth-child(5n) {
+    margin-right: 0;
+}
+.character-card:nth-child(5n + 1) {
+    margin-left: 0;
+}
+
 .character-card:hover {
-    opacity: 0.7;
+    background: var(--primary);
+    transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+    transition-duration: 0.3s;
 }
+.character-card:hover img {
+    transform: scale(1.1);
+}
+
 .character-card img {
-    height: 300px;
-    width: 200px;
+    height: 240px;
+    width: 100%;
     object-fit: cover;
-    object-position: center;
+    object-position: top;
     margin-bottom: 10px;
 }
-.character-card span {
-    margin-bottom: 10px;
+.card-img {
+    background: var(--primary);
+    overflow: hidden;
+    height: 240px;
+    width: 100%;
+    height: 240px;
+    width: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+
+.card-txt {
+    max-height: 100%;
+    width: 100%;
+    border-top: 5px solid var(--primary);
+}
+.card-txt div {
+    display: flex;
+    justify-content: space-between;
     padding: 0 10px;
+    margin: 20px 0 15px 0;
 }
-.character-card p {
+.card-txt span {
+    font-weight: bold;
+    margin-right: 5px;
+}
+.card-txt > p {
     overflow: hidden;
     text-overflow: ellipsis;
-    height: 36px;
+    height: 35px;
     width: 190px;
     padding: 0 10px;
     margin-bottom: 10px;
+    font-weight: lighter;
 }
