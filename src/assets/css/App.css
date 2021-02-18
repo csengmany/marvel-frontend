@@ -60,14 +60,15 @@ a {
 /* ============= */
 .characters {
     display: flex;
-
+    justify-content: space-between;
     flex-wrap: wrap;
     margin: 30px auto;
     width: 1024px;
     height: 100%;
+    flex: 1;
 }
 /* card */
-.character-card {
+.characters .character-card {
     display: flex;
     flex-direction: column;
     height: auto;
@@ -75,7 +76,6 @@ a {
     flex: 1;
     color: white;
     background: var(--bg);
-
     cursor: pointer;
     margin: 5px;
 }
@@ -94,6 +94,7 @@ a {
     margin-bottom: 0;
 }
 
+.character-card:last-child,
 .character-card:nth-child(5n) {
     margin-right: 0;
 }
@@ -110,14 +111,14 @@ a {
     transform: scale(1.1);
 }
 
-.character-card img {
+.characters .character-card img {
     height: 240px;
     width: 100%;
     object-fit: cover;
     object-position: top;
     margin-bottom: 10px;
 }
-.card-img {
+.characters .card-img {
     background: var(--primary);
     overflow: hidden;
     height: 240px;
@@ -128,7 +129,7 @@ a {
     object-position: top;
 }
 
-.card-txt {
+.characters .card-txt {
     max-height: 100%;
     width: 100%;
     border-top: 5px solid var(--primary);
@@ -143,12 +144,51 @@ a {
     font-weight: bold;
     margin-right: 5px;
 }
-.card-txt > p {
+.characters .card-txt > p {
     overflow: hidden;
     text-overflow: ellipsis;
     height: 35px;
     width: 190px;
     padding: 0 10px;
     margin-bottom: 10px;
+    font-weight: lighter;
+}
+
+/* ===============
+       COMICS      
+/* ============= */
+.comics-wrapper {
+}
+.comics {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex: 1;
+    margin: 0 auto;
+    width: 920px;
+    height: 100%;
+}
+.comic-card {
+    width: 100%;
+    height: max-content;
+    display: flex;
+    color: white;
+    background: var(--bg);
+    cursor: pointer;
+    margin: 5px;
+}
+
+.comic-card img {
+    width: 200px;
+    height: auto;
+}
+.comic-card .card-txt-wrapper {
+    border-left: var(--primary) 5px solid;
+}
+.comic-card .card-txt {
+    padding: 10px;
+}
+.comic-card .card-txt > p {
+    margin-top: 10px;
     font-weight: lighter;
 }

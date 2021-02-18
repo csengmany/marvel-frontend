@@ -50,7 +50,7 @@ function App() {
                     <Character />
                 </Route>
                 <Route path="/comics">
-                    <Comics />
+                    <Comics search={search} />
                 </Route>
                 <Route path="/favorites">
                     <Favorites />
