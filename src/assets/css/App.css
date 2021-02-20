@@ -157,11 +157,12 @@ li a:hover {
     position: relative;
 }
 .description {
-    padding: 10px 5px;
+    padding: 10px 10px;
     position: absolute;
     top: 0;
     z-index: 1;
-    height: max-content;
+    height: 230px;
+    overflow: scroll;
     visibility: hidden;
     opacity: 0;
 }
