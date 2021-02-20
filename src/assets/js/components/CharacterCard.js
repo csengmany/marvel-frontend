@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useHistory } from "react-router-dom";
-import { faBookmark } from "@fortawesome/free-regular-svg-icons";
+import { faBookmark as farFaBookmark } from "@fortawesome/free-regular-svg-icons";
 import Picture from "./Picture";
 
 const CharacterCard = ({ character }) => {
@@ -23,16 +23,16 @@ const CharacterCard = ({ character }) => {
                 <div>
                     <span>{character.name}</span>
                     <FontAwesomeIcon
-                        icon={faBookmark}
+                        icon={farFaBookmark}
                         className="bookmark"
                         onClick={() => handleBookmarkClick(character)}
                     />
                 </div>
 
-                <p>
-                    {character.description.length > 44
-                        ? character.description.slice(0, 40) + "..."
-                        : character.description}
+                <p className="description">
+                    {character.description
+                        ? character.description
+                        : `More information about ${character.name}`}
                 </p>
             </div>
         </div>

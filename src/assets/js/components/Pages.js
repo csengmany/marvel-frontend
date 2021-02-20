@@ -20,7 +20,7 @@ const Pages = ({ maxPage, setPage, page }) => {
                 return index + 1 === page ? (
                     <button
                         key={index}
-                        disabled="true"
+                        disabled={true}
                         style={{ fontWeight: "bold", color: "black" }}
                     >
                         {index + 1}
@@ -31,12 +31,11 @@ const Pages = ({ maxPage, setPage, page }) => {
                         index + 1 === page + 1 ||
                         index + 1 === page + 2 ||
                         index + 1 === page - 1) && (
-                        <>
+                        <div key={index}>
                             {page > 3 && index + 1 === page - 1 ? (
                                 <>
                                     <span>...</span>
                                     <button
-                                        key={index}
                                         onClick={() => {
                                             setPage(index + 1);
                                         }}
@@ -48,7 +47,6 @@ const Pages = ({ maxPage, setPage, page }) => {
                               index + 1 <= maxPage - 2 ? (
                                 <>
                                     <button
-                                        key={index}
                                         onClick={() => {
                                             setPage(index + 1);
                                         }}
@@ -60,7 +58,6 @@ const Pages = ({ maxPage, setPage, page }) => {
                             ) : (
                                 <>
                                     <button
-                                        key={index}
                                         onClick={() => {
                                             setPage(index + 1);
                                         }}
@@ -69,7 +66,7 @@ const Pages = ({ maxPage, setPage, page }) => {
                                     </button>
                                 </>
                             )}
-                        </>
+                        </div>
                     )
                 );
             })}

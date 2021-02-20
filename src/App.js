@@ -19,9 +19,17 @@ import {
     faCaretRight,
     faSearch,
     faTimes,
+    faBookmark as fasFaBookmark,
 } from "@fortawesome/free-solid-svg-icons";
-import { faBookmark } from "@fortawesome/free-regular-svg-icons";
-library.add(faBookmark, faCaretRight, faCaretLeft, faSearch, faTimes);
+import { faBookmark as farFaBookmark } from "@fortawesome/free-regular-svg-icons";
+library.add(
+    farFaBookmark,
+    faCaretRight,
+    faCaretLeft,
+    faSearch,
+    faTimes,
+    fasFaBookmark
+);
 
 function App() {
     //state to save data of axios request
@@ -31,6 +39,7 @@ function App() {
     //state of query params
     const [search, setSearch] = useState("");
     const [page, setPage] = useState(1);
+    const [limit, setLimit] = useState(10);
     //other states
     const [maxPage, setMaxPage] = useState("");
     const [charactersFavorite, setCharactersFavorites] = useState([]);
@@ -59,18 +68,19 @@ function App() {
         const fetchData = async () => {
             try {
                 const response = await axios.get(
-                    `https://cathy-marvel-backend.herokuapp.com/characters?name=${search}&page=${page}`
+                    `https://cathy-marvel-backend.herokuapp.com/characters?name=${search}&page=${page}&limit=${limit}`
                 );
                 console.log("data Home page", response.data);
                 setData(response.data);
-                setMaxPage(Math.ceil(response.data.count / 100));
+                let calcul = Math.ceil(response.data.count / limit);
+                setMaxPage(calcul);
                 setIsLoading(false);
             } catch (error) {
                 console.log(error.response);
             }
         };
         fetchData();
-    }, [setIsLoading, search, setSearch, page, setPage]);
+    }, [setIsLoading, search, setSearch, page, setPage, limit]);
     return isLoading ? (
         "Loading..."
     ) : (
@@ -87,10 +97,10 @@ function App() {
             />
             <Switch>
                 <Route path="/comics/:characterId">
-                    <Character />
+                    <Character limit={limit} setLimit={setLimit} />
                 </Route>
                 <Route path="/comics">
-                    <Comics search={search} />
+                    <Comics search={search} limit={limit} setLimit={setLimit} />
                 </Route>
                 <Route path="/favorites">
                     <Favorites />
@@ -99,8 +109,11 @@ function App() {
                     <Characters
                         data={data}
                         maxPage={maxPage}
+                        setMaxPage={setMaxPage}
                         page={page}
                         setPage={setPage}
+                        limit={limit}
+                        setLimit={setLimit}
                         charactersFavorite={charactersFavorite}
                         setCharactersFavorites={setCharactersFavorites}
                     />

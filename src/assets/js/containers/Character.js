@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import Picture from "../components/Picture";
 import ComicCard from "../components/ComicCard";
-import Pages from "../components/Pages";
 
 const Character = () => {
     const [data, setData] = useState([]);
@@ -59,7 +58,6 @@ const Character = () => {
                     return <ComicCard comic={comic} key={index} />;
                 })}
             </div>
-            <Pages maxPage={maxPage} setPage={setPage} />
         </div>
     );
 };
