@@ -2,7 +2,7 @@ import "./assets/css/App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
-// import Cookies from "js-cookie";
+import Cookies from "js-cookie";
 
 //import components
 import Footer from "./assets/js/components/Footer";
@@ -18,9 +18,10 @@ import {
     faCaretLeft,
     faCaretRight,
     faSearch,
+    faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 import { faBookmark } from "@fortawesome/free-regular-svg-icons";
-library.add(faBookmark, faCaretRight, faCaretLeft, faSearch);
+library.add(faBookmark, faCaretRight, faCaretLeft, faSearch, faTimes);
 
 function App() {
     //state to save data of axios request
@@ -36,6 +37,22 @@ function App() {
     // const [comicsFavorite, setComicsFavorites] = useState([]);
     //create intemerdiate to launch search when user submit the search
     const [textInput, setTextInput] = useState("");
+
+    const [userToken, setUserToken] = useState(Cookies.get("userToken") || "");
+    const [displayModal, setDisplayModal] = useState("");
+    const setUser = (token) => {
+        if (token) {
+            // Create a cookie name userToken
+            Cookies.set("userToken", token, { expires: 7 }); //expire in seven days
+            // update userToken
+            setUserToken(token);
+        } else {
+            //delete cookie when user is disconnect
+            Cookies.remove("userToken");
+            //update userToken
+            setUserToken(null);
+        }
+    };
 
     useEffect(() => {
         //axios request
@@ -63,6 +80,10 @@ function App() {
                 setSearch={setSearch}
                 textInput={textInput}
                 setTextInput={setTextInput}
+                userToken={userToken}
+                setUser={setUser}
+                displayModal={displayModal}
+                setDisplayModal={setDisplayModal}
             />
             <Switch>
                 <Route path="/comics/:characterId">
