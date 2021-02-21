@@ -38,7 +38,7 @@ const Comics = ({
         fetchData();
     }, [setIsLoading, search, page, setPage, data.count, limit]);
     return isLoading ? (
-        "Loading..."
+        <h1>Loading...</h1>
     ) : (
         <div className="comics-container">
             <h1>COMICS</h1>

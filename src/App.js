@@ -20,8 +20,7 @@ import {
     faSearch,
     faTimes,
     faBookmark as fasFaBookmark,
-    faEye,
-    faEyeSlash,
+    faBookOpen,
 } from "@fortawesome/free-solid-svg-icons";
 import { faBookmark as farFaBookmark } from "@fortawesome/free-regular-svg-icons";
 library.add(
@@ -30,9 +29,7 @@ library.add(
     faCaretLeft,
     faSearch,
     faTimes,
-    fasFaBookmark,
-    faEye,
-    faEyeSlash
+    fasFaBookmark
 );
 
 function App() {
@@ -90,7 +87,6 @@ function App() {
                     responseUser.data.favorite_comics
                 );
                 setUserData(responseUser.data);
-
                 const response = await axios.get(
                     `https://cathy-marvel-backend.herokuapp.com/characters?name=${search}&page=${page}&limit=${limit}`
                 );
@@ -106,7 +102,7 @@ function App() {
         fetchData();
     }, [setIsLoading, search, setSearch, page, setPage, limit, userId]);
     return isLoading ? (
-        "Loading..."
+        <h1>Loading...</h1>
     ) : (
         <Router>
             <Header

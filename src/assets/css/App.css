@@ -156,16 +156,7 @@ li a:hover {
 .character-card {
     position: relative;
 }
-.description {
-    padding: 10px 10px;
-    position: absolute;
-    top: 0;
-    z-index: 1;
-    height: 230px;
-    overflow: scroll;
-    visibility: hidden;
-    opacity: 0;
-}
+
 .character-card:hover .description {
     visibility: visible;
     opacity: 1;
@@ -183,7 +174,6 @@ li a:hover {
     overflow: hidden;
     height: 250px;
     width: 100%;
-
     object-fit: cover;
     object-position: top;
 }
@@ -203,6 +193,22 @@ li a:hover {
 .card-txt span {
     font-weight: bold;
     margin-right: 5px;
+}
+.description {
+    padding: 10px 10px;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    height: 210px;
+    overflow: scroll;
+    visibility: hidden;
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.description p {
+    margin: 5px 0;
 }
 
 /* ===============

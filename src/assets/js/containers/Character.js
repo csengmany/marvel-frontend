@@ -42,7 +42,7 @@ const Character = () => {
         maxPage,
     ]);
     return isLoading ? (
-        "Loading..."
+        <h1>Loading...</h1>
     ) : (
         <div className="character-container">
             <div className="character">
@@ -53,12 +53,16 @@ const Character = () => {
                 <p>{data.description}</p>
             </div>
             <div className="character-comics">
-                <h2>{data.name.toUpperCase()}&nbsp;COMICS</h2>
-                {data.comics.length > 0
-                    ? data.comics.map((comic, index) => {
-                          return <ComicCard comic={comic} key={index} />;
-                      })
-                    : "For the moment there is no comic book associated with this character."}
+                {data.comics.length > 0 ? (
+                    <>
+                        <h2>{data.name.toUpperCase()}&nbsp;COMICS</h2>
+                        {data.comics.map((comic, index) => {
+                            return <ComicCard comic={comic} key={index} />;
+                        })}
+                    </>
+                ) : (
+                    "There is no comic book associated with this character."
+                )}
             </div>
         </div>
     );

@@ -49,7 +49,7 @@ const Favorites = ({
         fetchData();
     }, [setIsLoading, userId, setComicData, search, page, limit]);
     return isLoading ? (
-        "Loading..."
+        <h1>Loading...</h1>
     ) : (
         <div className="favorites-container">
             <h1>FAVORITES</h1>

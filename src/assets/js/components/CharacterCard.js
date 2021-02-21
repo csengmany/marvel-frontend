@@ -1,7 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useHistory } from "react-router-dom";
 import { faBookmark as farFaBookmark } from "@fortawesome/free-regular-svg-icons";
-import { faBookmark as fasFaBookmark } from "@fortawesome/free-solid-svg-icons";
+import {
+    faBookmark as fasFaBookmark,
+    faBookOpen,
+} from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
 
 import Picture from "./Picture";
@@ -11,8 +14,6 @@ const CharacterCard = ({
     character,
     userToken,
     setDisplayModal,
-    setUserToken,
-    setUser,
     userId,
     userData,
 }) => {
@@ -35,10 +36,13 @@ const CharacterCard = ({
         }
     }, [character._id, userData, setIcon]);
 
+    // function to go to character's list of comics
     const handleClick = (id) => {
         return history.push(`/comics/${id}`);
     };
+    // function to add character in favorites
     const handleFavoriteClick = async () => {
+        // if authenticated user : can add to favorites
         if (userToken) {
             try {
                 const formData = new FormData();
@@ -60,6 +64,7 @@ const CharacterCard = ({
             } catch (error) {
                 console.log(error.response);
             }
+            // not authenticated user : open modal to sign in
         } else {
             setDisplayModal("flex");
         }
@@ -83,14 +88,15 @@ const CharacterCard = ({
                     />
                 </div>
 
-                <p
+                <div
                     className="description"
                     onClick={() => handleClick(character._id)}
                 >
-                    {character.description
-                        ? character.description
-                        : `More information about ${character.name}`}
-                </p>
+                    {character.comics.length > 0 && (
+                        <FontAwesomeIcon icon={faBookOpen} />
+                    )}
+                    <p>{character.description}</p>
+                </div>
             </div>
         </div>
     );
