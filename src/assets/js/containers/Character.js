@@ -13,17 +13,14 @@ const Character = () => {
     const [maxPage, setMaxPage] = useState(1);
 
     useEffect(() => {
-        //axios request
         const fetchData = async () => {
             try {
                 const response = await axios.get(
                     `https://cathy-marvel-backend.herokuapp.com/comics/${characterId}`
                 );
-                console.log("data one character", response.data); //data {count: 1493, limit: 100, results: Array(100)}count: 1493limit: 100results: (100) [{…},  {…}, ]__proto__: Object
                 setData(response.data);
                 if (data.count) {
                     setMaxPage(Math.ceil(response.data.count / 100));
-                    console.log(maxPage);
                 }
                 setIsLoading(false);
             } catch (error) {
@@ -56,9 +53,11 @@ const Character = () => {
                 {data.comics.length > 0 ? (
                     <>
                         <h2>{data.name.toUpperCase()}&nbsp;COMICS</h2>
-                        {data.comics.map((comic, index) => {
-                            return <ComicCard comic={comic} key={index} />;
-                        })}
+                        <div className="comics">
+                            {data.comics.map((comic, index) => {
+                                return <ComicCard comic={comic} key={index} />;
+                            })}
+                        </div>
                     </>
                 ) : (
                     "There is no comic book associated with this character."

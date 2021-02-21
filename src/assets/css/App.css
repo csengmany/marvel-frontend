@@ -221,8 +221,6 @@ li a:hover {
     justify-content: flex-start;
     flex: 1;
     margin: auto;
-    /* width: 920px;
-    height: 100%; */
 }
 .no-result {
     margin: 0px auto;
@@ -235,23 +233,26 @@ li a:hover {
 
 .comic-card {
     width: 400px;
-    height: 307px;
+    height: 250px;
     display: flex;
     color: white;
-    background: var(--bg);
     margin: 5px;
+    background: var(--bg);
 }
 
 .comic-card img {
-    width: 200px;
-    height: auto;
+    width: 165px;
+    height: 250px;
+    object-fit: cover;
+    object-position: center;
 }
 .comic-card .card-txt-wrapper {
     border-left: var(--primary) 5px solid;
 }
 .comic-card .card-txt {
     overflow: scroll;
-    height: 307px;
+    height: 250px;
+    width: 230px;
 }
 
 .comic-card .card-txt > p {
@@ -269,13 +270,10 @@ li a:hover {
 /* ===============
     CHARACTER ID     
 /* ============= */
+
 .character {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
     padding: 0 20px;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin: 30px auto;
 }
 .character div {
     width: max-content;
@@ -283,21 +281,21 @@ li a:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 0 auto;
 }
 .character h1 {
     text-align: center;
     font-size: 30px;
     font-weight: bold;
-
     margin-bottom: 30px;
 }
 
 .character p {
+    text-align: center;
     font-size: 18px;
-    margin-left: 20px;
-    width: 70vw;
+    margin: 10px auto;
 }
-.character-container .picture img {
+.character > div img {
     width: 250px;
     height: auto;
     object-fit: cover;
@@ -312,11 +310,15 @@ h1 {
 }
 h2 {
     font-size: 20px;
-    text-align: left;
+    text-align: center;
     font-weight: bold;
     margin-top: 20px;
     margin-bottom: 20px;
 }
+.character-comics .comic-card {
+    margin: 5px auto;
+}
+
 /* PAGES */
 .pages {
     display: flex;
