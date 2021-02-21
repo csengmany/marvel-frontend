@@ -266,7 +266,9 @@ li a:hover {
 .comic-card .bookmark:hover {
     color: red;
 }
-
+.comics-container .comic-card {
+    margin: 5px auto;
+}
 /* ===============
     CHARACTER ID     
 /* ============= */
