@@ -53,7 +53,7 @@ function App() {
     const [userId, setUserId] = useState(Cookies.get("userId") || "");
 
     const setUser = (token, id) => {
-        if (token) {
+        if (token && id) {
             // Create cookies when user is connected
             Cookies.set("userToken", token, { expires: 7 }); //expire in seven days
             Cookies.set("userId", id, { expires: 7 });
@@ -68,6 +68,7 @@ function App() {
 
             //update userToken
             setUserToken(null);
+            setUserId(null);
         }
     };
 
