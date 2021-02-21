@@ -20,6 +20,8 @@ import {
     faSearch,
     faTimes,
     faBookmark as fasFaBookmark,
+    faEye,
+    faEyeSlash,
 } from "@fortawesome/free-solid-svg-icons";
 import { faBookmark as farFaBookmark } from "@fortawesome/free-regular-svg-icons";
 library.add(
@@ -28,7 +30,9 @@ library.add(
     faCaretLeft,
     faSearch,
     faTimes,
-    fasFaBookmark
+    fasFaBookmark,
+    faEye,
+    faEyeSlash
 );
 
 function App() {
@@ -48,6 +52,7 @@ function App() {
     const [displayModal, setDisplayModal] = useState("");
 
     // state to control use favorite feature
+    const [userData, setUserData] = useState([]);
 
     const [userToken, setUserToken] = useState(Cookies.get("userToken") || "");
     const [userId, setUserId] = useState(Cookies.get("userId") || "");
@@ -76,6 +81,16 @@ function App() {
         //axios request
         const fetchData = async () => {
             try {
+                const responseUser = await axios.get(
+                    `https://cathy-marvel-backend.herokuapp.com/user/favorites/${userId}`
+                );
+                console.log(
+                    "data favorite page",
+                    responseUser.data.favorite_characters,
+                    responseUser.data.favorite_comics
+                );
+                setUserData(responseUser.data);
+
                 const response = await axios.get(
                     `https://cathy-marvel-backend.herokuapp.com/characters?name=${search}&page=${page}&limit=${limit}`
                 );
@@ -89,7 +104,7 @@ function App() {
             }
         };
         fetchData();
-    }, [setIsLoading, search, setSearch, page, setPage, limit]);
+    }, [setIsLoading, search, setSearch, page, setPage, limit, userId]);
     return isLoading ? (
         "Loading..."
     ) : (
@@ -152,6 +167,7 @@ function App() {
                         setUserToken={setUserToken}
                         setUser={setUser}
                         userId={userId}
+                        userData={userData}
                     />
                 </Route>
             </Switch>

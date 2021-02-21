@@ -1,9 +1,28 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookmark } from "@fortawesome/free-regular-svg-icons";
+import { faBookmark as farFaBookmark } from "@fortawesome/free-regular-svg-icons";
+import { faBookmark as fasFaBookmark } from "@fortawesome/free-solid-svg-icons";
+import { useState, useEffect } from "react";
 import Picture from "./Picture";
 import axios from "axios";
 
-const ComicCard = ({ comic, userToken, userId, setDisplayModal }) => {
+const ComicCard = ({ comic, userToken, userId, setDisplayModal, userData }) => {
+    const [icon, setIcon] = useState(farFaBookmark);
+    //useEffect to set icon of markbook
+    useEffect(() => {
+        if (userData) {
+            if (
+                userData.favorite_comics.length > 0 &&
+                userData.favorite_comics.includes(comic._id)
+            ) {
+                setIcon(fasFaBookmark);
+            } else {
+                setIcon(farFaBookmark);
+            }
+        } else {
+            setIcon(farFaBookmark);
+        }
+    }, [comic._id, userData, setIcon]);
+
     const handleFavoriteClick = async () => {
         if (userToken) {
             try {
@@ -22,6 +41,7 @@ const ComicCard = ({ comic, userToken, userId, setDisplayModal }) => {
                     }
                 );
                 console.log(response.data);
+                setIcon(icon === fasFaBookmark ? farFaBookmark : fasFaBookmark);
             } catch (error) {
                 console.log(error.response);
             }
@@ -37,7 +57,7 @@ const ComicCard = ({ comic, userToken, userId, setDisplayModal }) => {
                     <div>
                         <span>{comic.title}</span>
                         <FontAwesomeIcon
-                            icon={faBookmark}
+                            icon={icon}
                             className="bookmark"
                             onClick={handleFavoriteClick}
                         />

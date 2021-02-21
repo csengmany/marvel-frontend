@@ -224,7 +224,7 @@ li a:hover {
     display: flex;
     color: white;
     background: var(--bg);
-    cursor: pointer;
+
     margin: 5px;
 }
 
@@ -242,7 +242,12 @@ li a:hover {
     margin-top: 10px;
     font-weight: lighter;
 }
-
+.comic-card .bookmark {
+    cursor: pointer;
+}
+.comic-card .bookmark:hover {
+    color: red;
+}
 /* ===============
     CHARACTER ID     
 /* ============= */

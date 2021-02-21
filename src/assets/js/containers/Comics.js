@@ -61,16 +61,15 @@ const Comics = ({
             </div>
             <div className="pages-limit">
                 <Pages maxPage={maxPage} setPage={setPage} page={page} />
-                {data.results.length > 10 && (
-                    <Limit
-                        data={data}
-                        setPage={setPage}
-                        limit={limit}
-                        setLimit={setLimit}
-                        setMaxPage={setMaxPage}
-                        maxPage={maxPage}
-                    />
-                )}
+
+                <Limit
+                    data={data}
+                    setPage={setPage}
+                    limit={limit}
+                    setLimit={setLimit}
+                    setMaxPage={setMaxPage}
+                    maxPage={maxPage}
+                />
             </div>
         </div>
     );

@@ -70,6 +70,7 @@ const Favorites = ({
                                 // setUserToken={setUserToken}
                                 // setUser={setUser}
                                 userId={userId}
+                                userData={userData}
                                 // setFavorite={setFavorite}
                             />
                         );
@@ -92,6 +93,7 @@ const Favorites = ({
                                     userToken={userToken}
                                     userId={userId}
                                     setDisplayModal={setDisplayModal}
+                                    userData={userData}
                                 />
                             );
                         }

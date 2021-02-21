@@ -1,6 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useHistory } from "react-router-dom";
 import { faBookmark as farFaBookmark } from "@fortawesome/free-regular-svg-icons";
+import { faBookmark as fasFaBookmark } from "@fortawesome/free-solid-svg-icons";
+import { useState, useEffect } from "react";
+
 import Picture from "./Picture";
 import axios from "axios";
 
@@ -11,8 +14,26 @@ const CharacterCard = ({
     setUserToken,
     setUser,
     userId,
+    userData,
 }) => {
     const history = useHistory();
+
+    const [icon, setIcon] = useState(farFaBookmark);
+    //useEffect to set icon of markbook
+    useEffect(() => {
+        if (userData) {
+            if (
+                userData.favorite_characters.length > 0 &&
+                userData.favorite_characters.includes(character._id)
+            ) {
+                setIcon(fasFaBookmark);
+            } else {
+                setIcon(farFaBookmark);
+            }
+        } else {
+            setIcon(farFaBookmark);
+        }
+    }, [character._id, userData, setIcon]);
 
     const handleClick = (id) => {
         return history.push(`/comics/${id}`);
@@ -35,6 +56,7 @@ const CharacterCard = ({
                     }
                 );
                 console.log(response.data);
+                setIcon(icon === fasFaBookmark ? farFaBookmark : fasFaBookmark);
             } catch (error) {
                 console.log(error.response);
             }
@@ -55,7 +77,7 @@ const CharacterCard = ({
                     </span>
 
                     <FontAwesomeIcon
-                        icon={farFaBookmark}
+                        icon={icon}
                         className="bookmark"
                         onClick={handleFavoriteClick}
                     />

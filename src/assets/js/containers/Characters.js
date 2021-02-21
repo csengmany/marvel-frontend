@@ -14,14 +14,14 @@ const Characters = ({
     setUserToken,
     setUser,
     userId,
-    setFavorite,
+    userData,
 }) => {
     return (
         <div className="characters-container">
             <h1>CHARACTERS</h1>
             <div className="characters">
                 {data.results.length > 0 ? (
-                    data.results.map((character) => {
+                    data.results.map((character, index) => {
                         return (
                             <CharacterCard
                                 character={character}
@@ -32,7 +32,7 @@ const Characters = ({
                                 setUserToken={setUserToken}
                                 setUser={setUser}
                                 userId={userId}
-                                setFavorite={setFavorite}
+                                userData={userData}
                             />
                         );
                     })
@@ -42,16 +42,15 @@ const Characters = ({
             </div>
             <div className="pages-limit">
                 <Pages maxPage={maxPage} setPage={setPage} page={page} />
-                {data.results.length > 10 && (
-                    <Limit
-                        data={data}
-                        setPage={setPage}
-                        limit={limit}
-                        setLimit={setLimit}
-                        setMaxPage={setMaxPage}
-                        maxPage={maxPage}
-                    />
-                )}
+
+                <Limit
+                    data={data}
+                    setPage={setPage}
+                    limit={limit}
+                    setLimit={setLimit}
+                    setMaxPage={setMaxPage}
+                    maxPage={maxPage}
+                />
             </div>
         </div>
     );
