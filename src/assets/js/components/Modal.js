@@ -63,8 +63,8 @@ const Modal = ({ setUser, setDisplayModal, displayModal, userToken }) => {
                             }
                         );
                         console.log(response);
-                        if (response.data.token) {
-                            setUser(response.data.token);
+                        if (response.data.token && response.data._id) {
+                            setUser(response.data.token, response.data._id);
                             emptyFields();
                             setDisplayModal("");
                         }
