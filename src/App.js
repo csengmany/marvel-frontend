@@ -29,7 +29,8 @@ library.add(
     faCaretLeft,
     faSearch,
     faTimes,
-    fasFaBookmark
+    fasFaBookmark,
+    faBookOpen
 );
 
 function App() {
@@ -47,19 +48,16 @@ function App() {
     const [textInput, setTextInput] = useState("");
     // state to control modal
     const [displayModal, setDisplayModal] = useState("");
-
     // state to control use favorite feature
     const [userData, setUserData] = useState([]);
 
     const [userToken, setUserToken] = useState(Cookies.get("userToken") || "");
     const [userId, setUserId] = useState(Cookies.get("userId") || "");
-
     const setUser = (token, id) => {
         if (token && id) {
             // Create cookies when user is connected
             Cookies.set("userToken", token, { expires: 7 }); //expire in seven days
             Cookies.set("userId", id, { expires: 7 });
-
             // update userToken
             setUserToken(token);
             setUserId(id);
@@ -67,7 +65,6 @@ function App() {
             //delete cookies when user is disconnected
             Cookies.remove("userToken");
             Cookies.remove("userId");
-
             //update userToken
             setUserToken(null);
             setUserId(null);
@@ -129,6 +126,7 @@ function App() {
                         userToken={userToken}
                         userId={userId}
                         setDisplayModal={setDisplayModal}
+                        userData={userData}
                     />
                 </Route>
 

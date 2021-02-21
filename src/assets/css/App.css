@@ -218,19 +218,27 @@ li a:hover {
 .comics {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex: 1;
-    margin: 0 auto;
-    width: 920px;
-    height: 100%;
+    margin: auto;
+    /* width: 920px;
+    height: 100%; */
 }
+.no-result {
+    margin: 0px auto;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+}
+
 .comic-card {
-    width: 100%;
-    height: max-content;
+    width: 400px;
+    height: 307px;
     display: flex;
     color: white;
     background: var(--bg);
-
     margin: 5px;
 }
 
@@ -242,9 +250,12 @@ li a:hover {
     border-left: var(--primary) 5px solid;
 }
 .comic-card .card-txt {
-    padding: 10px;
+    overflow: scroll;
+    height: 307px;
 }
+
 .comic-card .card-txt > p {
+    padding: 10px;
     margin-top: 10px;
     font-weight: lighter;
 }
@@ -254,6 +265,7 @@ li a:hover {
 .comic-card .bookmark:hover {
     color: red;
 }
+
 /* ===============
     CHARACTER ID     
 /* ============= */

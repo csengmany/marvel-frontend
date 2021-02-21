@@ -11,9 +11,9 @@ const Comics = ({
     userToken,
     userId,
     setDisplayModal,
+    userData,
 }) => {
     const [data, setData] = useState([]);
-
     const [isLoading, setIsLoading] = useState(true);
     const [page, setPage] = useState(1);
     const [maxPage, setMaxPage] = useState(1);
@@ -37,6 +37,7 @@ const Comics = ({
         };
         fetchData();
     }, [setIsLoading, search, page, setPage, data.count, limit]);
+
     return isLoading ? (
         <h1>Loading...</h1>
     ) : (
@@ -52,24 +53,20 @@ const Comics = ({
                                 userToken={userToken}
                                 userId={userId}
                                 setDisplayModal={setDisplayModal}
+                                userData={userData}
                             />
                         );
                     })
                 ) : (
-                    <span>No results</span>
+                    <span className="no-result">No results</span>
                 )}
             </div>
             <div className="pages-limit">
                 <Pages maxPage={maxPage} setPage={setPage} page={page} />
 
-                <Limit
-                    data={data}
-                    setPage={setPage}
-                    limit={limit}
-                    setLimit={setLimit}
-                    setMaxPage={setMaxPage}
-                    maxPage={maxPage}
-                />
+                {data.count > 0 && (
+                    <Limit data={data} setPage={setPage} setLimit={setLimit} />
+                )}
             </div>
         </div>
     );
