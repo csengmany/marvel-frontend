@@ -4,7 +4,14 @@ import ComicCard from "../components/ComicCard";
 import Limit from "../components/Limit";
 import Pages from "../components/Pages";
 
-const Comics = ({ search, limit, setLimit }) => {
+const Comics = ({
+    search,
+    limit,
+    setLimit,
+    userToken,
+    userId,
+    setDisplayModal,
+}) => {
     const [data, setData] = useState([]);
 
     const [isLoading, setIsLoading] = useState(true);
@@ -36,20 +43,34 @@ const Comics = ({ search, limit, setLimit }) => {
         <div className="comics-container">
             <h1>COMICS</h1>
             <div className="comics">
-                {data.results.map((comic, index) => {
-                    return <ComicCard key={index} comic={comic} />;
-                })}
+                {data.results.length > 0 ? (
+                    data.results.map((comic, index) => {
+                        return (
+                            <ComicCard
+                                key={index}
+                                comic={comic}
+                                userToken={userToken}
+                                userId={userId}
+                                setDisplayModal={setDisplayModal}
+                            />
+                        );
+                    })
+                ) : (
+                    <span>No results</span>
+                )}
             </div>
             <div className="pages-limit">
                 <Pages maxPage={maxPage} setPage={setPage} page={page} />
-                <Limit
-                    data={data}
-                    setPage={setPage}
-                    limit={limit}
-                    setLimit={setLimit}
-                    setMaxPage={setMaxPage}
-                    maxPage={maxPage}
-                />
+                {data.results.length > 10 && (
+                    <Limit
+                        data={data}
+                        setPage={setPage}
+                        limit={limit}
+                        setLimit={setLimit}
+                        setMaxPage={setMaxPage}
+                        maxPage={maxPage}
+                    />
+                )}
             </div>
         </div>
     );

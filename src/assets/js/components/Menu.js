@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-const Menu = () => {
+const Menu = ({ userToken }) => {
     return (
         <nav>
             <ul>
@@ -9,9 +9,11 @@ const Menu = () => {
                 <li>
                     <Link to="/comics">COMICS</Link>
                 </li>
-                <li>
-                    <Link to="/favorites">FAVORITES</Link>
-                </li>
+                {userToken && (
+                    <li>
+                        <Link to="/favorites">FAVORITES</Link>
+                    </li>
+                )}
             </ul>
         </nav>
     );

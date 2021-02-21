@@ -54,9 +54,11 @@ const Character = () => {
             </div>
             <div className="character-comics">
                 <h2>{data.name.toUpperCase()}&nbsp;COMICS</h2>
-                {data.comics.map((comic, index) => {
-                    return <ComicCard comic={comic} key={index} />;
-                })}
+                {data.comics.length > 0
+                    ? data.comics.map((comic, index) => {
+                          return <ComicCard comic={comic} key={index} />;
+                      })
+                    : "For the moment there is no comic book associated with this character."}
             </div>
         </div>
     );

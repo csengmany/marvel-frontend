@@ -42,22 +42,30 @@ function App() {
     const [limit, setLimit] = useState(10);
     //other states
     const [maxPage, setMaxPage] = useState("");
-    const [charactersFavorite, setCharactersFavorites] = useState([]);
-    // const [comicsFavorite, setComicsFavorites] = useState([]);
     //create intemerdiate to launch search when user submit the search
     const [textInput, setTextInput] = useState("");
+    // state to control modal
+    const [displayModal, setDisplayModal] = useState("");
+
+    // state to control use favorite feature
 
     const [userToken, setUserToken] = useState(Cookies.get("userToken") || "");
-    const [displayModal, setDisplayModal] = useState("");
-    const setUser = (token) => {
+    const [userId, setUserId] = useState(Cookies.get("userId") || "");
+
+    const setUser = (token, id) => {
         if (token) {
-            // Create a cookie name userToken
+            // Create cookies when user is connected
             Cookies.set("userToken", token, { expires: 7 }); //expire in seven days
+            Cookies.set("userId", id, { expires: 7 });
+
             // update userToken
             setUserToken(token);
+            setUserId(id);
         } else {
-            //delete cookie when user is disconnect
+            //delete cookies when user is disconnected
             Cookies.remove("userToken");
+            Cookies.remove("userId");
+
             //update userToken
             setUserToken(null);
         }
@@ -92,6 +100,8 @@ function App() {
                 setTextInput={setTextInput}
                 userToken={userToken}
                 setUser={setUser}
+                userId={userId}
+                setUserId={setUserId}
                 displayModal={displayModal}
                 setDisplayModal={setDisplayModal}
             />
@@ -100,11 +110,32 @@ function App() {
                     <Character limit={limit} setLimit={setLimit} />
                 </Route>
                 <Route path="/comics">
-                    <Comics search={search} limit={limit} setLimit={setLimit} />
+                    <Comics
+                        search={search}
+                        limit={limit}
+                        setLimit={setLimit}
+                        userToken={userToken}
+                        userId={userId}
+                        setDisplayModal={setDisplayModal}
+                    />
                 </Route>
+
                 <Route path="/favorites">
-                    <Favorites />
+                    <Favorites
+                        userId={userId}
+                        userToken={userToken}
+                        setDisplayModal={setDisplayModal}
+                        search={search}
+                        limit={limit}
+                        setLimit={setLimit}
+                        page={page}
+                        setPage={setPage}
+                        maxPage={maxPage}
+                        setMaxPage={setMaxPage}
+                        data={data}
+                    />
                 </Route>
+
                 <Route path="/">
                     <Characters
                         data={data}
@@ -114,8 +145,12 @@ function App() {
                         setPage={setPage}
                         limit={limit}
                         setLimit={setLimit}
-                        charactersFavorite={charactersFavorite}
-                        setCharactersFavorites={setCharactersFavorites}
+                        setDisplayModal={setDisplayModal}
+                        displayModal={displayModal}
+                        userToken={userToken}
+                        setUserToken={setUserToken}
+                        setUser={setUser}
+                        userId={userId}
                     />
                 </Route>
             </Switch>

@@ -1,7 +1,4 @@
-const Limit = ({ data, setPage, limit, setLimit, setMaxPage, maxPage }) => {
-    console.log("limit", limit);
-    console.log("count", data.count);
-    console.log("maxPage", maxPage);
+const Limit = ({ data, setPage, setLimit }) => {
     return (
         <div>
             <form className="limit">

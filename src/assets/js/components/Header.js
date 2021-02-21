@@ -28,9 +28,10 @@ const Header = ({
                     className="logo"
                     onClick={() => history.push("/")}
                 />
-                <Menu />
+                <Menu userToken={userToken} />
 
                 <form
+                    className="search-input"
                     onSubmit={(event) => {
                         handleSearch(event);
                     }}

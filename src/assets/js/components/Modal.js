@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
-const Modal = ({ setUser, setDisplayModal, displayModal }) => {
+const Modal = ({ setUser, setDisplayModal, displayModal, userToken }) => {
     //state for input form
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
@@ -11,6 +12,7 @@ const Modal = ({ setUser, setDisplayModal, displayModal }) => {
     //state for error message
     const [errorMessage, setErrorMessage] = useState("");
 
+    const history = useHistory();
     //functions to update states
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
@@ -72,8 +74,8 @@ const Modal = ({ setUser, setDisplayModal, displayModal }) => {
                             { email: email, password: password }
                         );
                         console.log(response);
-                        if (response.data.token) {
-                            setUser(response.data.token);
+                        if (response.data.token && response.data._id) {
+                            setUser(response.data.token, response.data._id);
                             emptyFields();
                             setDisplayModal("");
                         }
@@ -93,9 +95,24 @@ const Modal = ({ setUser, setDisplayModal, displayModal }) => {
 
     return (
         <div>
-            <button onClick={() => setDisplayModal("flex")}>
-                SIGN UP | SIGN IN
-            </button>
+            {userToken ? (
+                <button
+                    className="modal-btn"
+                    onClick={() => {
+                        setUser(null);
+                        history.push("/");
+                    }}
+                >
+                    DISCONNECT
+                </button>
+            ) : (
+                <button
+                    className="modal-btn"
+                    onClick={() => setDisplayModal("flex")}
+                >
+                    SIGN UP | SIGN IN
+                </button>
+            )}
 
             <div className="modal" style={{ display: displayModal }}>
                 <div className="modal-container">

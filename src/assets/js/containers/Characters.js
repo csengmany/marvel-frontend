@@ -9,29 +9,49 @@ const Characters = ({
     page,
     limit,
     setLimit,
+    setDisplayModal,
+    userToken,
+    setUserToken,
+    setUser,
+    userId,
+    setFavorite,
 }) => {
     return (
         <div className="characters-container">
             <h1>CHARACTERS</h1>
             <div className="characters">
-                {data.results.map((character) => {
-                    return (
-                        <CharacterCard
-                            character={character}
-                            key={character._id}
-                        />
-                    );
-                })}
+                {data.results.length > 0 ? (
+                    data.results.map((character) => {
+                        return (
+                            <CharacterCard
+                                character={character}
+                                key={character._id}
+                                limit={limit}
+                                setDisplayModal={setDisplayModal}
+                                userToken={userToken}
+                                setUserToken={setUserToken}
+                                setUser={setUser}
+                                userId={userId}
+                                setFavorite={setFavorite}
+                            />
+                        );
+                    })
+                ) : (
+                    <span>No results</span>
+                )}
             </div>
             <div className="pages-limit">
                 <Pages maxPage={maxPage} setPage={setPage} page={page} />
-                <Limit
-                    data={data}
-                    setPage={setPage}
-                    limit={limit}
-                    setLimit={setLimit}
-                    setMaxPage={setMaxPage}
-                />
+                {data.results.length > 10 && (
+                    <Limit
+                        data={data}
+                        setPage={setPage}
+                        limit={limit}
+                        setLimit={setLimit}
+                        setMaxPage={setMaxPage}
+                        maxPage={maxPage}
+                    />
+                )}
             </div>
         </div>
     );

@@ -35,7 +35,7 @@ header {
     cursor: pointer;
 }
 
-form input {
+.header form input {
     display: inline-block;
     outline: none;
     border: 2px solid var(--bg);
@@ -43,7 +43,7 @@ form input {
     padding: 5px;
 }
 
-.header form input:focus {
+.search-input :focus {
     border: 2px solid var(--primary);
 }
 .search-btn {
@@ -78,7 +78,7 @@ li a:hover {
        FOOTER      
 /* ============= */
 .footer {
-    margin-top: 10px;
+    margin-top: 80px;
     height: 100px;
     color: white;
 
@@ -402,6 +402,11 @@ div > button {
     cursor: pointer;
     margin-right: 20px;
 }
+.modal-container button:hover {
+    font-weight: bold;
+    background: var(--hover);
+    border: 2px solid var(--hover);
+}
 .modal-container .sign-btn:hover {
     color: var(--primary) !important;
     border-bottom: 2px solid var(--primary) !important;
@@ -415,14 +420,13 @@ div > button {
     border: 2px solid var(--primary);
     border-radius: 2px;
 }
-.modal-container button:hover {
-    font-weight: bold;
-    background: var(--hover);
-    border: 2px solid var(--hover);
-}
+
 .sign {
     display: flex;
     justify-content: center;
+}
+.modal-btn:hover {
+    color: var(--primary);
 }
 
 /* The Close Button */
