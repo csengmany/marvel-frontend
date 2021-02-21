@@ -19,7 +19,7 @@ const Character = () => {
                 const response = await axios.get(
                     `https://cathy-marvel-backend.herokuapp.com/comics/${characterId}`
                 );
-                console.log("data", response.data); //data {count: 1493, limit: 100, results: Array(100)}count: 1493limit: 100results: (100) [{…},  {…}, ]__proto__: Object
+                console.log("data one character", response.data); //data {count: 1493, limit: 100, results: Array(100)}count: 1493limit: 100results: (100) [{…},  {…}, ]__proto__: Object
                 setData(response.data);
                 if (data.count) {
                     setMaxPage(Math.ceil(response.data.count / 100));

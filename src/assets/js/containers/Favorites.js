@@ -31,7 +31,7 @@ const Favorites = ({
                     `https://cathy-marvel-backend.herokuapp.com/user/favorites/${userId}`
                 );
                 console.log(
-                    "data comics page",
+                    "data favorite page",
                     responseUser.data.favorite_characters,
                     responseUser.data.favorite_comics
                 );
@@ -40,20 +40,8 @@ const Favorites = ({
                 const response = await axios.get(
                     `https://cathy-marvel-backend.herokuapp.com/comics?title=${search}&page=${page}&limit=${limit}`
                 );
-                console.log("data comics page", response.data);
                 setComicData(response.data);
-
-                // if (data.count) {
-                //     setMaxPage(Math.ceil(response.data.count / limit));
-                // }
                 setIsLoading(false);
-                //         const responseComics = await axios.get(
-                //             `https://cathy-marvel-backend.herokuapp.com/comics?title=${search}&page=${page}&limit=${limit}`
-                //         );
-
-                //         setComicData(responseComics.data);
-
-                //         setIsLoading(false);
             } catch (error) {
                 console.log(error.response);
             }
@@ -86,6 +74,8 @@ const Favorites = ({
                             />
                         );
                     }
+                    //pour retirer l'erreur de map...
+                    return <span key={index}></span>;
                 })}
             </div>
             <h2>COMICS</h2>
@@ -95,7 +85,6 @@ const Favorites = ({
                         if (
                             userData.favorite_comics.indexOf(comic._id) !== -1
                         ) {
-                            console.log(comic.title);
                             return (
                                 <ComicCard
                                     key={index}
@@ -104,11 +93,10 @@ const Favorites = ({
                                     userId={userId}
                                     setDisplayModal={setDisplayModal}
                                 />
-                                // <div>
-                                //     <span>{comic.title}&nbsp;&nbsp;&nbsp;</span>
-                                // </div>
                             );
                         }
+                        //pour retirer l'erreur de map...
+                        return <span key={index}></span>;
                     })
                 ) : (
                     <span>No comics favorites</span>
@@ -117,9 +105,8 @@ const Favorites = ({
 
             <div className="pages-limit">
                 <Pages maxPage={maxPage} setPage={setPage} page={page} />
-                {data.results.length > 10 && (
-                    <Limit data={data} setPage={setPage} setLimit={setLimit} />
-                )}
+
+                <Limit data={data} setPage={setPage} setLimit={setLimit} />
             </div>
         </div>
     );
