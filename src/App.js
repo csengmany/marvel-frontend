@@ -77,16 +77,18 @@ function App() {
         //axios request
         const fetchData = async () => {
             try {
-                // const responseUser = await axios.get(
-                //     `https://cathy-marvel-backend.herokuapp.com/user/favorites/${userId}`
-                // );
+                //  à commenter si bug
+                const responseUser = await axios.get(
+                    `https://cathy-marvel-backend.herokuapp.com/user/favorites/${userId}`
+                );
 
-                // console.log(
-                //     "data favorite page",
-                //     responseUser.data.favorite_characters,
-                //     responseUser.data.favorite_comics
-                // );
-                // setUserData(responseUser.data);
+                console.log(
+                    "data favorite page",
+                    responseUser.data.favorite_characters,
+                    responseUser.data.favorite_comics
+                );
+                setUserData(responseUser.data);
+                // jusqu'ici
                 const response = await axios.get(
                     `https://cathy-marvel-backend.herokuapp.com/characters?name=${search}&page=${page}&limit=${limit}`
                 );
