@@ -23,17 +23,17 @@ const CharacterCard = ({
     //useEffect to set icon of markbook
     useEffect(() => {
         if (userData) {
-            if (
-                userData.favorite_characters.length > 0 &&
-                userData.favorite_characters.includes(character._id)
-            ) {
-                setIcon(fasFaBookmark);
-            } else {
-                setIcon(farFaBookmark);
-            }
+            // if (
+            //     userData.favorite_characters.length > 0 &&
+            //     userData.favorite_characters.includes(character._id)
+            // ) {
+            setIcon(fasFaBookmark);
         } else {
             setIcon(farFaBookmark);
         }
+        // } else {
+        //     setIcon(farFaBookmark);
+        // }
     }, [character._id, userData, setIcon]);
 
     // function to go to character's list of comics
@@ -82,7 +82,7 @@ const CharacterCard = ({
                     </span>
 
                     <FontAwesomeIcon
-                        icon={icon}
+                        icon={userToken ? icon : farFaBookmark}
                         className="bookmark"
                         onClick={handleFavoriteClick}
                     />

@@ -23,6 +23,7 @@ const Favorites = ({
     const [userData, setUserData] = useState([]);
 
     const [isLoading, setIsLoading] = useState(true);
+
     useEffect(() => {
         //axios request
         const fetchData = async () => {

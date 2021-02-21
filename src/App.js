@@ -72,12 +72,15 @@ function App() {
     };
 
     useEffect(() => {
+        console.log("hi");
+
         //axios request
         const fetchData = async () => {
             try {
                 const responseUser = await axios.get(
                     `https://cathy-marvel-backend.herokuapp.com/user/favorites/${userId}`
                 );
+
                 console.log(
                     "data favorite page",
                     responseUser.data.favorite_characters,
@@ -94,10 +97,12 @@ function App() {
                 setIsLoading(false);
             } catch (error) {
                 console.log(error.response);
+                const result = error.response;
             }
         };
+
         fetchData();
-    }, [setIsLoading, search, setSearch, page, setPage, limit, userId]);
+    }, [setIsLoading, search, setSearch, page, setPage, limit]);
     return isLoading ? (
         <h1>Loading...</h1>
     ) : (
