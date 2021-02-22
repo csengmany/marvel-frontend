@@ -125,7 +125,12 @@ function App() {
             />
             <Switch>
                 <Route path="/comics/:characterId">
-                    <Character limit={limit} setLimit={setLimit} />
+                    <Character
+                        limit={limit}
+                        setLimit={setLimit}
+                        userToken={userToken}
+                        setDisplayModal={setDisplayModal}
+                    />
                 </Route>
                 <Route path="/comics">
                     <Comics

@@ -2,6 +2,8 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import Signup from "./Signup";
+import Login from "./Login";
 
 const Modal = ({ setUser, setDisplayModal, displayModal, userToken }) => {
     //state for input form
@@ -17,14 +19,8 @@ const Modal = ({ setUser, setDisplayModal, displayModal, userToken }) => {
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
     };
-    const handleUsernameChange = (event) => {
-        setUsername(event.target.value);
-    };
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
-    };
-    const handleConfirmPasswordChange = (event) => {
-        setConfirmPassword(event.target.value);
     };
 
     //state for switch to sign up form or sign in form
@@ -160,48 +156,24 @@ const Modal = ({ setUser, setDisplayModal, displayModal, userToken }) => {
                         <form onSubmit={handleSubmit}>
                             {/* display sign up form */}
                             {signupForm ? (
-                                <>
-                                    <input
-                                        type="email"
-                                        placeholder="Email"
-                                        value={email}
-                                        onChange={handleEmailChange}
-                                    />
-                                    <input
-                                        type="text"
-                                        placeholder="Username"
-                                        value={username}
-                                        onChange={handleUsernameChange}
-                                    />
-                                    <input
-                                        type="password"
-                                        placeholder="Password"
-                                        value={password}
-                                        onChange={handlePasswordChange}
-                                    />
-                                    <input
-                                        type="password"
-                                        placeholder="Confirm password"
-                                        value={confirmPassword}
-                                        onChange={handleConfirmPasswordChange}
-                                    />
-                                </>
+                                <Signup
+                                    email={email}
+                                    username={username}
+                                    setUsername={setUsername}
+                                    password={password}
+                                    confirmPassword={confirmPassword}
+                                    setConfirmPassword={setConfirmPassword}
+                                    handleEmailChange={handleEmailChange}
+                                    handlePasswordChange={handlePasswordChange}
+                                />
                             ) : (
                                 // display sign in form
-                                <>
-                                    <input
-                                        type="email"
-                                        placeholder="Email"
-                                        value={email}
-                                        onChange={handleEmailChange}
-                                    />
-                                    <input
-                                        type="password"
-                                        placeholder="Password"
-                                        value={password}
-                                        onChange={handlePasswordChange}
-                                    />
-                                </>
+                                <Login
+                                    email={email}
+                                    password={password}
+                                    handleEmailChange={handleEmailChange}
+                                    handlePasswordChange={handlePasswordChange}
+                                />
                             )}
                             <span style={{ color: "red" }}>{errorMessage}</span>
                             <button type="submit">

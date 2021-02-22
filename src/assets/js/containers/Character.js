@@ -4,7 +4,7 @@ import axios from "axios";
 import Picture from "../components/Picture";
 import ComicCard from "../components/ComicCard";
 
-const Character = () => {
+const Character = ({ userToken, setDisplayModal }) => {
     const [data, setData] = useState([]);
     const { characterId } = useParams();
     const [isLoading, setIsLoading] = useState(true);
@@ -55,7 +55,14 @@ const Character = () => {
                         <h2>{data.name.toUpperCase()}&nbsp;COMICS</h2>
                         <div className="comics">
                             {data.comics.map((comic, index) => {
-                                return <ComicCard comic={comic} key={index} />;
+                                return (
+                                    <ComicCard
+                                        comic={comic}
+                                        key={index}
+                                        userToken={userToken}
+                                        setDisplayModal={setDisplayModal}
+                                    />
+                                );
                             })}
                         </div>
                     </>

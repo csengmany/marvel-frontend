@@ -45,12 +45,16 @@ header {
     font-size: 18px;
 }
 
-.search-input :focus {
+.header form input:focus {
     border: 2px solid var(--primary);
 }
 .search-btn {
     background: var(--bg);
     color: white;
+    font-size: 18px;
+}
+.search-btn :hover {
+    color: var(--primary);
 }
 
 /* ===============
@@ -441,6 +445,12 @@ div > button {
     font-weight: bold;
     padding: 10px;
     margin: 10px 0;
+}
+/* sign up */
+.sign-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .sign-btn {
     cursor: pointer;
