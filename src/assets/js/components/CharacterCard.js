@@ -85,7 +85,10 @@ const CharacterCard = ({
 
             <div className="card-txt">
                 <div>
-                    <span onClick={() => handleClick(character._id)}>
+                    <span
+                        className="title"
+                        onClick={() => handleClick(character._id)}
+                    >
                         {character.name}
                     </span>
 

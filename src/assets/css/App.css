@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
 :root {
     --primary: #ee1c24;
     --hover: #ac1419;
@@ -41,6 +41,8 @@ header {
     border: 2px solid var(--bg);
     border-radius: 3px;
     padding: 5px;
+    font-family: "Bangers", cursive;
+    font-size: 18px;
 }
 
 .search-input :focus {
@@ -54,7 +56,10 @@ header {
 /* ===============
        MENU      
 /* ============= */
-
+.header a {
+    font-family: "Bangers", cursive;
+    font-size: 25px;
+}
 li,
 a {
     display: inline-block;
@@ -81,19 +86,17 @@ li a:hover {
     margin-top: 80px;
     height: 100px;
     color: white;
-
     background: var(--bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .footer strong,
 .footer a {
     text-decoration: none;
     font-weight: bold;
     color: white;
-}
-.footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    font-family: "Bangers", cursive;
 }
 
 /* ===============
@@ -182,6 +185,7 @@ li a:hover {
     max-height: 100%;
     width: 100%;
     border-top: 5px solid var(--primary);
+    font-family: "Bangers", cursive;
 }
 .card-txt div {
     display: flex;
@@ -210,7 +214,10 @@ li a:hover {
 .description p {
     margin: 5px 0;
 }
-
+.title {
+    font-family: "Bangers", cursive;
+    font-size: 20px;
+}
 /* ===============
        COMICS      
 /* ============= */
@@ -290,6 +297,7 @@ li a:hover {
     font-size: 30px;
     font-weight: bold;
     margin-bottom: 30px;
+    font-family: "Bangers", cursive;
 }
 
 .character p {
@@ -309,13 +317,15 @@ h1 {
     font-weight: bold;
     margin-top: 20px;
     margin-bottom: 10px;
+    font-family: "Bangers", cursive;
 }
 h2 {
-    font-size: 20px;
+    font-size: 25px;
     text-align: center;
     font-weight: bold;
     margin-top: 20px;
     margin-bottom: 20px;
+    font-family: "Bangers", cursive;
 }
 .character-comics .comic-card {
     margin: 5px auto;
@@ -364,6 +374,12 @@ button {
 select {
     cursor: pointer;
 }
+.limit,
+select,
+option {
+    font-family: "Bangers", cursive;
+}
+
 /* ===============
       MODAL       
 /* ============= */
@@ -371,6 +387,8 @@ select {
 div > button {
     font-weight: bold;
     padding: 8px;
+    font-family: "Bangers", cursive;
+    font-size: 20px;
 }
 /* The Modal (background) */
 .modal {
@@ -410,12 +428,14 @@ div > button {
     border: none;
     border-bottom: 1px solid var(--dark);
     padding: 10px 20px;
+    font-family: "Roboto";
 }
 .modal form input:focus {
     border-bottom: 2px solid var(--primary);
 }
 .modal ::placeholder {
     color: #b9b4b4;
+    font-family: "Bangers", cursive;
 }
 .modal-container span {
     font-weight: bold;
@@ -424,6 +444,8 @@ div > button {
 }
 .sign-btn {
     cursor: pointer;
+    font-family: "Bangers", cursive;
+    font-size: 20px;
 }
 .sign-btn:first-child {
     cursor: pointer;
@@ -446,6 +468,8 @@ div > button {
     color: white;
     border: 2px solid var(--primary);
     border-radius: 2px;
+    font-family: "Bangers", cursive;
+    font-size: 25px;
 }
 
 .sign {

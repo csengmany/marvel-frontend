@@ -62,7 +62,7 @@ const ComicCard = ({ comic, userToken, userId, setDisplayModal, userData }) => {
             <div className="card-txt-wrapper">
                 <div className="card-txt">
                     <div>
-                        <span>{comic.title}</span>
+                        <span className="title">{comic.title}</span>
                         <FontAwesomeIcon
                             icon={icon}
                             className="bookmark"
