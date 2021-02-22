@@ -1,19 +1,19 @@
 import logo from "../../images/marvel.svg";
 import Menu from "./Menu";
 import { useHistory } from "react-router-dom";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Modal from "./Modal";
 
 const Header = ({
-    search,
     setSearch,
-    textInput,
-    setTextInput,
     displayModal,
     setDisplayModal,
     userToken,
     setUser,
 }) => {
+    //create intemerdiate to launch search when user submit the search
+    const [textInput, setTextInput] = useState("");
     const history = useHistory();
     const handleSearch = (event) => {
         event.preventDefault();

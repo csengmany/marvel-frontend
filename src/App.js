@@ -44,8 +44,7 @@ function App() {
     const [limit, setLimit] = useState(10);
     //other states
     const [maxPage, setMaxPage] = useState("");
-    //create intemerdiate to launch search when user submit the search
-    const [textInput, setTextInput] = useState("");
+
     // state to control modal
     const [displayModal, setDisplayModal] = useState("");
     // state to control use favorite feature
@@ -118,14 +117,9 @@ function App() {
     ) : (
         <Router>
             <Header
-                search={search}
                 setSearch={setSearch}
-                textInput={textInput}
-                setTextInput={setTextInput}
                 userToken={userToken}
                 setUser={setUser}
-                userId={userId}
-                setUserId={setUserId}
                 displayModal={displayModal}
                 setDisplayModal={setDisplayModal}
             />
