@@ -34,7 +34,7 @@ const CharacterCard = ({
         } else {
             setIcon(farFaBookmark);
         }
-    }, [character._id, userData, setIcon]);
+    }, [character._id, userData, setIcon, userToken]);
 
     // function to go to character's list of comics
     const handleClick = (id) => {

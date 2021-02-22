@@ -98,12 +98,20 @@ function App() {
                 setIsLoading(false);
             } catch (error) {
                 console.log(error.response);
-                const result = error.response;
             }
         };
 
         fetchData();
-    }, [setIsLoading, search, setSearch, page, setPage, limit]);
+    }, [
+        setIsLoading,
+        search,
+        setSearch,
+        page,
+        setPage,
+        limit,
+        userToken,
+        userId,
+    ]);
     return isLoading ? (
         <h1>Loading...</h1>
     ) : (

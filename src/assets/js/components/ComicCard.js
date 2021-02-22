@@ -21,7 +21,7 @@ const ComicCard = ({ comic, userToken, userId, setDisplayModal, userData }) => {
         } else {
             setIcon(farFaBookmark);
         }
-    }, [comic._id, userData, setIcon]);
+    }, [comic._id, userData, setIcon, userToken]);
 
     const handleFavoriteClick = async () => {
         if (userToken) {
