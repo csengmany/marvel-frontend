@@ -22,16 +22,15 @@ const CharacterCard = ({
     const [icon, setIcon] = useState(farFaBookmark);
     //useEffect to set icon of markbook
     useEffect(() => {
-        if (userData) {
-            // si bug commenter le if
-            // if (
-            //     userData.favorite_characters.length > 0 &&
-            //     userData.favorite_characters.includes(character._id)
-            // ) {
-            //     setIcon(fasFaBookmark);
-            // } else {
-            setIcon(farFaBookmark);
-            // }
+        if (userToken && userData) {
+            if (
+                userData.favorite_characters.length > 0 &&
+                userData.favorite_characters.includes(character._id)
+            ) {
+                setIcon(fasFaBookmark);
+            } else {
+                setIcon(farFaBookmark);
+            }
         } else {
             setIcon(farFaBookmark);
         }

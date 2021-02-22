@@ -72,23 +72,22 @@ function App() {
     };
 
     useEffect(() => {
-        console.log("hi");
-
         //axios request
         const fetchData = async () => {
             try {
-                //  à commenter si bug
-                // const responseUser = await axios.get(
-                //     `https://cathy-marvel-backend.herokuapp.com/user/favorites/${userId}`
-                // );
+                if (userToken) {
+                    const responseUser = await axios.get(
+                        `https://cathy-marvel-backend.herokuapp.com/user/favorites/${userId}`
+                    );
 
-                // console.log(
-                //     "data favorite page",
-                //     responseUser.data.favorite_characters,
-                //     responseUser.data.favorite_comics
-                // );
-                // setUserData(responseUser.data);
-                // jusqu'ici
+                    console.log(
+                        "data favorite page",
+                        responseUser.data.favorite_characters,
+                        responseUser.data.favorite_comics
+                    );
+                    setUserData(responseUser.data);
+                }
+
                 const response = await axios.get(
                     `https://cathy-marvel-backend.herokuapp.com/characters?name=${search}&page=${page}&limit=${limit}`
                 );

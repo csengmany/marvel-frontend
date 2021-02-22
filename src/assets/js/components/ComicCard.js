@@ -9,15 +9,15 @@ const ComicCard = ({ comic, userToken, userId, setDisplayModal, userData }) => {
     const [icon, setIcon] = useState(farFaBookmark);
     //useEffect to set icon of markbook
     useEffect(() => {
-        if (userData) {
-            // if (
-            //     userData.favorite_comics.length > 0 &&
-            //     userData.favorite_comics.includes(comic._id)
-            // ) {
-            //     setIcon(fasFaBookmark);
-            // } else {
-            setIcon(farFaBookmark);
-            // }
+        if (userToken && userData) {
+            if (
+                userData.favorite_comics.length > 0 &&
+                userData.favorite_comics.includes(comic._id)
+            ) {
+                setIcon(fasFaBookmark);
+            } else {
+                setIcon(farFaBookmark);
+            }
         } else {
             setIcon(farFaBookmark);
         }
