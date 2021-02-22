@@ -22,18 +22,26 @@ const CharacterCard = ({
     const [icon, setIcon] = useState(farFaBookmark);
     //useEffect to set icon of markbook
     useEffect(() => {
-        if (userToken && userData) {
-            if (
-                userData.favorite_characters.length > 0 &&
-                userData.favorite_characters.includes(character._id)
-            ) {
-                setIcon(fasFaBookmark);
-            } else {
-                setIcon(farFaBookmark);
+        const fetchData = async () => {
+            try {
+                if (userToken && userData) {
+                    if (
+                        userData.favorite_characters.length > 0 &&
+                        userData.favorite_characters.includes(character._id)
+                    ) {
+                        setIcon(fasFaBookmark);
+                    } else {
+                        setIcon(farFaBookmark);
+                    }
+                } else {
+                    setIcon(farFaBookmark);
+                }
+            } catch (error) {
+                console.log(error);
             }
-        } else {
-            setIcon(farFaBookmark);
-        }
+        };
+
+        fetchData();
     }, [character._id, userData, setIcon, userToken]);
 
     // function to go to character's list of comics

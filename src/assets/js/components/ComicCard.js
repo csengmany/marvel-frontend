@@ -9,18 +9,25 @@ const ComicCard = ({ comic, userToken, userId, setDisplayModal, userData }) => {
     const [icon, setIcon] = useState(farFaBookmark);
     //useEffect to set icon of markbook
     useEffect(() => {
-        if (userToken && userData) {
-            if (
-                userData.favorite_comics.length > 0 &&
-                userData.favorite_comics.includes(comic._id)
-            ) {
-                setIcon(fasFaBookmark);
-            } else {
-                setIcon(farFaBookmark);
+        const fetchData = async () => {
+            try {
+                if (userToken && userData) {
+                    if (
+                        userData.favorite_comics.length > 0 &&
+                        userData.favorite_comics.includes(comic._id)
+                    ) {
+                        setIcon(fasFaBookmark);
+                    } else {
+                        setIcon(farFaBookmark);
+                    }
+                } else {
+                    setIcon(farFaBookmark);
+                }
+            } catch (error) {
+                console.log(error);
             }
-        } else {
-            setIcon(farFaBookmark);
-        }
+        };
+        fetchData();
     }, [comic._id, userData, setIcon, userToken]);
 
     const handleFavoriteClick = async () => {

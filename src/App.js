@@ -76,6 +76,7 @@ function App() {
         const fetchData = async () => {
             try {
                 if (userToken) {
+                    console.log(userId);
                     const responseUser = await axios.get(
                         `https://cathy-marvel-backend.herokuapp.com/user/favorites/${userId}`
                     );
