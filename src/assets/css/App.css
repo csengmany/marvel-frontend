@@ -10,11 +10,18 @@
     box-sizing: border-box;
     font-family: "Roboto", sans-serif;
 }
-.characters-container,
-.character-container,
+
 .comics-container,
-.favorites-container {
-    padding: 0 80px;
+.favorites-container,
+.characters-container,
+.character-container {
+    margin: 0 25px;
+}
+.loader-container {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 /* ===============
        HEADER      
@@ -26,17 +33,18 @@ header {
 }
 .header {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
 }
 
 .logo {
-    height: 50px;
+    height: 70px;
     cursor: pointer;
 }
 
 .header form input {
-    display: inline-block;
+    /* display: inline-block; */
     outline: none;
     border: 2px solid var(--bg);
     border-radius: 3px;
@@ -45,12 +53,16 @@ header {
     font-size: 18px;
 }
 
-.search-input :focus {
+.header form input:focus {
     border: 2px solid var(--primary);
 }
 .search-btn {
     background: var(--bg);
     color: white;
+    font-size: 18px;
+}
+.search-btn :hover {
+    color: var(--primary);
 }
 
 /* ===============
@@ -72,7 +84,7 @@ li a {
     color: white;
     padding: 14px 16px;
     text-decoration: none;
-    height: 50px;
+    height: 70px;
     font-weight: bold;
 }
 li a:hover {
@@ -104,120 +116,119 @@ li a:hover {
 /* ============= */
 .characters {
     display: flex;
-    justify-content: flex-start;
     flex-wrap: wrap;
-    margin: 20px auto;
-    max-width: 1024px;
-    height: 100%;
-    flex: 1;
-}
-/* card */
-.characters .character-card {
-    display: flex;
-    flex-direction: column;
-    height: auto;
-    width: 200px;
-    color: white;
-    background: var(--bg);
-    cursor: pointer;
-    border: 1px solid var(--bg);
-    margin: 0 5px 5px 0px;
-}
-.character-card:nth-child(1),
-.character-card:nth-child(2),
-.character-card:nth-child(3),
-.character-card:nth-child(4),
-.character-card:nth-child(5) {
-    margin-top: 0;
-}
-.character-card:nth-last-child(5),
-.character-card:nth-last-child(1),
-.character-card:nth-last-child(2),
-.character-card:nth-last-child(3),
-.character-card:nth-last-child(4) {
-    margin-bottom: 0;
-}
-
-.character-card:last-child,
-.character-card:nth-child(5n) {
-    margin-right: 0;
-}
-.character-card:nth-child(5n + 1) {
-    margin-left: 0;
-}
-
-.character-card:hover {
-    background: var(--primary);
-    transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
-    transition-duration: 0.3s;
-}
-.character-card:hover img {
-    transform: scale(1.1);
-    opacity: 0.4;
-    filter: alpha(opacity=30);
+    padding-left: 20px;
+    max-width: 1370px;
+    margin: 0 auto 50px;
 }
 .character-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px black solid;
+    height: 330px;
+    width: 250px;
+    overflow: hidden;
+    margin-top: 20px;
+    margin-right: 20px;
+    background: var(--dark);
     position: relative;
 }
-
-.character-card:hover .description {
-    visibility: visible;
-    opacity: 1;
-}
-
-.characters .character-card img {
+.character-card img {
     height: 250px;
     width: 100%;
     object-fit: cover;
     object-position: top;
     margin-bottom: 10px;
+    transform: scale(1.12);
 }
-.characters .card-img {
+.character-card:hover {
+    transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+    transition-duration: 0.3s;
+}
+.character-card:hover .card-img {
     background: var(--dark);
-    overflow: hidden;
-    height: 250px;
-    width: 100%;
-    object-fit: cover;
-    object-position: top;
 }
-
-.characters .card-txt {
-    max-height: 100%;
+.character-card:hover img {
+    height: 260px;
     width: 100%;
-    border-top: 5px solid var(--primary);
-    font-family: "Bangers", cursive;
+    transform: scale(1);
+    opacity: 0.4;
+    filter: alpha(opacity=30);
 }
-.card-txt div {
+.angle-parent {
+    position: relative;
+}
+.angle {
+    transform: rotate(45deg);
+    top: 8px;
+    right: 8px;
+    background: white;
+    border-bottom: black solid 1px;
+    height: 25px;
+    width: 25px;
+    position: absolute;
+    z-index: 1;
+}
+.angle-parent:hover .angle {
+    border-bottom: none;
+    transition: transform 0.5s ease 0s;
+    transform: translate(50%, -50%) rotate(45deg);
+}
+.card-txt {
+    font-size: 18px;
+    margin-bottom: 20px;
+    margin-left: 10px;
     display: flex;
     justify-content: space-between;
-    padding: 0 10px;
-    margin: 20px 0 15px 0;
-    width: 190px;
+    align-items: center;
 }
-.card-txt span {
-    font-weight: bold;
-    margin-right: 5px;
+.character-card:hover .title {
+    margin-left: 12px;
+    transition: ease 0.3s;
 }
 .description {
-    padding: 10px 10px;
     position: absolute;
-    top: 0;
-    z-index: 1;
-    height: 210px;
-    overflow: scroll;
-    visibility: hidden;
-    opacity: 0;
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: flex-start;
+    top: 30px;
+    margin: 10px;
 }
+.faBookOpen {
+    margin: -20px 0 10px 0;
+}
+.card-txt svg {
+    margin: 0 10px;
+}
+
+.character-card:hover .description {
+    display: flex;
+}
+.card-txt p,
 .description p {
-    margin: 5px 0;
+    color: white;
 }
-.title {
-    font-family: "Bangers", cursive;
-    font-size: 20px;
+.card-txt p,
+.comic-card span {
+    font-family: "Bangers";
 }
+.character-card svg {
+    color: white;
+}
+.character-card svg:hover {
+    color: var(--primary);
+}
+.description svg {
+    margin-bottom: 10px;
+}
+.card-img,
+.character-card > .card-txt p,
+.description,
+.bookmark {
+    cursor: pointer;
+}
+
 /* ===============
        COMICS      
 /* ============= */
@@ -227,7 +238,7 @@ li a:hover {
     flex-wrap: wrap;
     justify-content: flex-start;
     flex: 1;
-    margin: auto;
+    margin-top: 35px !important;
 }
 .no-result {
     margin: 0px auto;
@@ -244,7 +255,7 @@ li a:hover {
     display: flex;
     color: white;
     margin: 5px;
-    background: var(--bg);
+    background: var(--dark);
 }
 
 .comic-card img {
@@ -275,6 +286,26 @@ li a:hover {
 }
 .comics-container .comic-card {
     margin: 5px auto;
+}
+.comic-card .card-txt {
+    padding: 20px 20px 10px 0;
+}
+.comic-card p {
+    font-family: "Roboto";
+    margin-top: 10px;
+    font-size: 16px;
+}
+.comic-card .card-txt {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.card-txt-wrapper .card-txt div {
+    display: flex;
+    justify-content: space-between;
+}
+::-webkit-scrollbar {
+    display: none;
 }
 /* ===============
     CHARACTER ID     
@@ -315,8 +346,8 @@ h1 {
     font-size: 35px;
     text-align: center;
     font-weight: bold;
-    margin-top: 20px;
-    margin-bottom: 10px;
+    margin-top: 40px;
+    margin-bottom: 20px;
     font-family: "Bangers", cursive;
 }
 h2 {
@@ -362,7 +393,8 @@ button {
 .btn-txt {
     font-size: 14px;
 }
-.pages button:hover {
+
+.pages div:hover button {
     color: var(--primary) !important;
 }
 
@@ -378,6 +410,9 @@ select {
 select,
 option {
     font-family: "Bangers", cursive;
+}
+.pages span {
+    cursor: default;
 }
 
 /* ===============
@@ -431,6 +466,7 @@ div > button {
     font-family: "Roboto";
 }
 .modal form input:focus {
+    border: none;
     border-bottom: 2px solid var(--primary);
 }
 .modal ::placeholder {
@@ -441,6 +477,12 @@ div > button {
     font-weight: bold;
     padding: 10px;
     margin: 10px 0;
+}
+/* sign up */
+.sign-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .sign-btn {
     cursor: pointer;
@@ -500,4 +542,68 @@ div > button {
 /* FAVORITES */
 .bookmark:hover {
     color: black;
+}
+.favorites-container {
+    min-height: 62vh;
+}
+.favorites-container h2 {
+    padding-left: 10px;
+    margin-left: 20px;
+    text-align: left;
+}
+.favorites-container > .comics {
+    margin: 0 auto;
+    max-width: 1370px;
+    justify-content: flex-start;
+    padding-left: 42.5px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.favorites-container > .characters > span {
+    margin-top: 15px;
+    margin-left: 22px;
+}
+
+.favorites-container > .comics > .comic-card {
+    margin: 0;
+    padding: 0;
+    margin: 20px 42.5px 0 0;
+}
+.favorites-container > .comics > span {
+    padding: 0;
+}
+
+@media (max-width: 435px) {
+    .comic-card {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        margin: 5px;
+        background: var(--dark);
+    }
+    .comic-card img {
+        margin-top: 10px;
+        width: 165px;
+        height: 250px;
+        object-fit: cover;
+        object-position: center;
+    }
+    .comic-card .card-txt-wrapper {
+        border-left: none;
+    }
+    .comic-card .card-txt {
+        overflow: scroll;
+        height: auto;
+        width: 100%;
+    }
+
+    .comic-card .card-txt > p {
+        padding: 10px;
+        margin-top: 10px;
+        font-weight: lighter;
+    }
 }

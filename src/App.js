@@ -1,4 +1,5 @@
 import "./assets/css/App.css";
+import "./assets/css/Loader.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -23,6 +24,7 @@ import {
     faBookOpen,
 } from "@fortawesome/free-solid-svg-icons";
 import { faBookmark as farFaBookmark } from "@fortawesome/free-regular-svg-icons";
+import Loader from "./assets/js/components/Loader";
 library.add(
     farFaBookmark,
     faCaretRight,
@@ -34,6 +36,8 @@ library.add(
 );
 
 function App() {
+    const server = "https://cathy-marvel-backend.herokuapp.com";
+
     //state to save data of axios request
     const [data, setData] = useState([]);
     //display message when page is loading
@@ -75,23 +79,16 @@ function App() {
         const fetchData = async () => {
             try {
                 if (userToken) {
-                    console.log(userId);
                     const responseUser = await axios.get(
-                        `https://cathy-marvel-backend.herokuapp.com/user/favorites/${userId}`
-                    );
-
-                    console.log(
-                        "data favorite page",
-                        responseUser.data.favorite_characters,
-                        responseUser.data.favorite_comics
+                        `${server}/user/favorites/${userId}`
                     );
                     setUserData(responseUser.data);
                 }
-
                 const response = await axios.get(
-                    `https://cathy-marvel-backend.herokuapp.com/characters?name=${search}&page=${page}&limit=${limit}`
+                    `${server}/characters?name=${search}&skip=${
+                        (page - 1) * limit
+                    }&limit=${limit}`
                 );
-                console.log("data Home page", response.data);
                 setData(response.data);
                 let calcul = Math.ceil(response.data.count / limit);
                 setMaxPage(calcul);
@@ -113,7 +110,7 @@ function App() {
         userId,
     ]);
     return isLoading ? (
-        <h1>Loading...</h1>
+        <Loader />
     ) : (
         <Router>
             <Header
@@ -122,10 +119,22 @@ function App() {
                 setUser={setUser}
                 displayModal={displayModal}
                 setDisplayModal={setDisplayModal}
+                limit={limit}
+                setLimit={setLimit}
+                setPage={setPage}
+                server={server}
             />
             <Switch>
                 <Route path="/comics/:characterId">
-                    <Character limit={limit} setLimit={setLimit} />
+                    <Character
+                        limit={limit}
+                        setLimit={setLimit}
+                        userToken={userToken}
+                        setDisplayModal={setDisplayModal}
+                        server={server}
+                        userId={userId}
+                        userData={userData}
+                    />
                 </Route>
                 <Route path="/comics">
                     <Comics
@@ -136,22 +145,21 @@ function App() {
                         userId={userId}
                         setDisplayModal={setDisplayModal}
                         userData={userData}
+                        server={server}
                     />
                 </Route>
 
                 <Route path="/favorites">
                     <Favorites
                         userId={userId}
+                        setUserToken={setUserToken}
                         userToken={userToken}
+                        setUser={setUser}
                         setDisplayModal={setDisplayModal}
                         search={search}
-                        limit={limit}
-                        setLimit={setLimit}
-                        page={page}
-                        setPage={setPage}
-                        maxPage={maxPage}
                         setMaxPage={setMaxPage}
                         data={data}
+                        server={server}
                     />
                 </Route>
 
@@ -171,6 +179,7 @@ function App() {
                         setUser={setUser}
                         userId={userId}
                         userData={userData}
+                        server={server}
                     />
                 </Route>
             </Switch>

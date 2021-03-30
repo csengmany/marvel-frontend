@@ -1,13 +1,29 @@
 import { Link } from "react-router-dom";
-const Menu = ({ userToken }) => {
+const Menu = ({ userToken, setLimit, setPage }) => {
     return (
         <nav>
             <ul>
                 <li>
-                    <Link to="/">CHARACTERS</Link>
+                    <Link
+                        to="/"
+                        onClick={() => {
+                            setPage(1);
+                            setLimit(10);
+                        }}
+                    >
+                        CHARACTERS
+                    </Link>
                 </li>
                 <li>
-                    <Link to="/comics">COMICS</Link>
+                    <Link
+                        to="/comics"
+                        onClick={() => {
+                            setPage(1);
+                            setLimit(10);
+                        }}
+                    >
+                        COMICS
+                    </Link>
                 </li>
                 {userToken && (
                     <li>

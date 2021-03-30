@@ -16,19 +16,19 @@ const CharacterCard = ({
     setDisplayModal,
     userId,
     userData,
+    server,
 }) => {
     const history = useHistory();
-
     const [icon, setIcon] = useState(farFaBookmark);
     //useEffect to set icon of markbook
     useEffect(() => {
         const fetchData = async () => {
             try {
                 if (userToken && userData) {
-                    if (
-                        userData.favorite_characters.length > 0 &&
-                        userData.favorite_characters.includes(character._id)
-                    ) {
+                    const found = userData.favorite_characters.find(
+                        (element) => element._id === character._id
+                    );
+                    if (userData.favorite_characters.length > 0 && found) {
                         setIcon(fasFaBookmark);
                     } else {
                         setIcon(farFaBookmark);
@@ -56,9 +56,9 @@ const CharacterCard = ({
                 const formData = new FormData();
                 formData.append("id", userId);
                 formData.append("characterId", character._id);
-                console.log("userId", userId);
-                const response = await axios.post(
-                    `https://cathy-marvel-backend.herokuapp.com/user/favorite/character`,
+
+                await axios.post(
+                    `${server}/user/favorite/character`,
                     formData,
                     {
                         headers: {
@@ -67,7 +67,7 @@ const CharacterCard = ({
                         },
                     }
                 );
-                console.log(response.data);
+
                 setIcon(icon === fasFaBookmark ? farFaBookmark : fasFaBookmark);
             } catch (error) {
                 console.log(error.response);
@@ -79,35 +79,37 @@ const CharacterCard = ({
     };
     return (
         <div className="character-card">
-            <div className="card-img">
+            <div
+                className="card-img"
+                onClick={() => handleClick(character._id)}
+            >
                 <Picture picture={character} name={character.name} />
             </div>
 
             <div className="card-txt">
-                <div>
-                    <span
-                        className="title"
-                        onClick={() => handleClick(character._id)}
-                    >
-                        {character.name}
-                    </span>
+                <p className="title" onClick={() => handleClick(character._id)}>
+                    {character.name}
+                </p>
 
-                    <FontAwesomeIcon
-                        icon={userToken ? icon : farFaBookmark}
-                        className="bookmark"
-                        onClick={handleFavoriteClick}
-                    />
-                </div>
+                <FontAwesomeIcon
+                    icon={userToken ? icon : farFaBookmark}
+                    className="bookmark"
+                    onClick={handleFavoriteClick}
+                />
+            </div>
 
-                <div
-                    className="description"
-                    onClick={() => handleClick(character._id)}
-                >
-                    {character.comics.length > 0 && (
+            <div
+                className="description"
+                onClick={() => handleClick(character._id)}
+            >
+                {character.comics ? (
+                    character.comics.length > 0 && (
                         <FontAwesomeIcon icon={faBookOpen} />
-                    )}
-                    <p>{character.description}</p>
-                </div>
+                    )
+                ) : (
+                    <></>
+                )}
+                <p>{character.description}</p>
             </div>
         </div>
     );

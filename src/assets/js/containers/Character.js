@@ -3,8 +3,15 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import Picture from "../components/Picture";
 import ComicCard from "../components/ComicCard";
+import Loader from "../components/Loader";
 
-const Character = () => {
+const Character = ({
+    userToken,
+    setDisplayModal,
+    server,
+    userId,
+    userData,
+}) => {
     const [data, setData] = useState([]);
     const { characterId } = useParams();
     const [isLoading, setIsLoading] = useState(true);
@@ -16,7 +23,7 @@ const Character = () => {
         const fetchData = async () => {
             try {
                 const response = await axios.get(
-                    `https://cathy-marvel-backend.herokuapp.com/comics/${characterId}`
+                    `${server}/comics/${characterId}`
                 );
                 setData(response.data);
                 if (data.count) {
@@ -37,9 +44,10 @@ const Character = () => {
         characterId,
         data.count,
         maxPage,
+        server,
     ]);
     return isLoading ? (
-        <h1>Loading...</h1>
+        <Loader />
     ) : (
         <div className="character-container">
             <div className="character">
@@ -55,7 +63,17 @@ const Character = () => {
                         <h2>{data.name.toUpperCase()}&nbsp;COMICS</h2>
                         <div className="comics">
                             {data.comics.map((comic, index) => {
-                                return <ComicCard comic={comic} key={index} />;
+                                return (
+                                    <ComicCard
+                                        key={index}
+                                        comic={comic}
+                                        userToken={userToken}
+                                        userId={userId}
+                                        setDisplayModal={setDisplayModal}
+                                        userData={userData}
+                                        server={server}
+                                    />
+                                );
                             })}
                         </div>
                     </>

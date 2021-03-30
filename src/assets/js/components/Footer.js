@@ -19,7 +19,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noreferrer"
             >
-                &nbsp;Cathy
+                &nbsp;Cathy Sengmany
             </a>
         </div>
     );

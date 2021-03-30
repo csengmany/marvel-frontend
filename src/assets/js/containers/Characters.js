@@ -15,25 +15,30 @@ const Characters = ({
     setUser,
     userId,
     userData,
+    server,
 }) => {
     return (
         <div className="characters-container">
-            <h1>CHARACTERS</h1>
+            <h1>CHARACTERS LIST</h1>
             <div className="characters">
                 {data.results.length > 0 ? (
                     data.results.map((character, index) => {
                         return (
-                            <CharacterCard
-                                character={character}
-                                key={character._id}
-                                limit={limit}
-                                setDisplayModal={setDisplayModal}
-                                userToken={userToken}
-                                setUserToken={setUserToken}
-                                setUser={setUser}
-                                userId={userId}
-                                userData={userData}
-                            />
+                            <div className="angle-parent" key={character._id}>
+                                <CharacterCard
+                                    character={character}
+                                    key={character._id}
+                                    limit={limit}
+                                    setDisplayModal={setDisplayModal}
+                                    userToken={userToken}
+                                    setUserToken={setUserToken}
+                                    setUser={setUser}
+                                    userId={userId}
+                                    userData={userData}
+                                    server={server}
+                                />
+                                <div className="angle"></div>
+                            </div>
                         );
                     })
                 ) : (

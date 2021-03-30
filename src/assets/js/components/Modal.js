@@ -2,8 +2,16 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import Signup from "./Signup";
+import Login from "./Login";
 
-const Modal = ({ setUser, setDisplayModal, displayModal, userToken }) => {
+const Modal = ({
+    setUser,
+    setDisplayModal,
+    displayModal,
+    userToken,
+    server,
+}) => {
     //state for input form
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
@@ -17,14 +25,8 @@ const Modal = ({ setUser, setDisplayModal, displayModal, userToken }) => {
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
     };
-    const handleUsernameChange = (event) => {
-        setUsername(event.target.value);
-    };
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
-    };
-    const handleConfirmPasswordChange = (event) => {
-        setConfirmPassword(event.target.value);
     };
 
     //state for switch to sign up form or sign in form
@@ -55,14 +57,14 @@ const Modal = ({ setUser, setDisplayModal, displayModal, userToken }) => {
                 try {
                     if (signupForm) {
                         const response = await axios.post(
-                            "https://cathy-marvel-backend.herokuapp.com/user/signup",
+                            `${server}/user/signup`,
                             {
                                 email: email,
                                 username: username,
                                 password: password,
                             }
                         );
-                        console.log(response);
+
                         if (response.data.token && response.data._id) {
                             setUser(response.data.token, response.data._id);
                             emptyFields();
@@ -70,10 +72,10 @@ const Modal = ({ setUser, setDisplayModal, displayModal, userToken }) => {
                         }
                     } else {
                         const response = await axios.post(
-                            "https://cathy-marvel-backend.herokuapp.com/user/login",
+                            `${server}/user/login`,
                             { email: email, password: password }
                         );
-                        console.log(response);
+
                         if (response.data.token && response.data._id) {
                             setUser(response.data.token, response.data._id);
                             emptyFields();
@@ -160,48 +162,24 @@ const Modal = ({ setUser, setDisplayModal, displayModal, userToken }) => {
                         <form onSubmit={handleSubmit}>
                             {/* display sign up form */}
                             {signupForm ? (
-                                <>
-                                    <input
-                                        type="email"
-                                        placeholder="Email"
-                                        value={email}
-                                        onChange={handleEmailChange}
-                                    />
-                                    <input
-                                        type="text"
-                                        placeholder="Username"
-                                        value={username}
-                                        onChange={handleUsernameChange}
-                                    />
-                                    <input
-                                        type="password"
-                                        placeholder="Password"
-                                        value={password}
-                                        onChange={handlePasswordChange}
-                                    />
-                                    <input
-                                        type="password"
-                                        placeholder="Confirm password"
-                                        value={confirmPassword}
-                                        onChange={handleConfirmPasswordChange}
-                                    />
-                                </>
+                                <Signup
+                                    email={email}
+                                    username={username}
+                                    setUsername={setUsername}
+                                    password={password}
+                                    confirmPassword={confirmPassword}
+                                    setConfirmPassword={setConfirmPassword}
+                                    handleEmailChange={handleEmailChange}
+                                    handlePasswordChange={handlePasswordChange}
+                                />
                             ) : (
                                 // display sign in form
-                                <>
-                                    <input
-                                        type="email"
-                                        placeholder="Email"
-                                        value={email}
-                                        onChange={handleEmailChange}
-                                    />
-                                    <input
-                                        type="password"
-                                        placeholder="Password"
-                                        value={password}
-                                        onChange={handlePasswordChange}
-                                    />
-                                </>
+                                <Login
+                                    email={email}
+                                    password={password}
+                                    handleEmailChange={handleEmailChange}
+                                    handlePasswordChange={handlePasswordChange}
+                                />
                             )}
                             <span style={{ color: "red" }}>{errorMessage}</span>
                             <button type="submit">
