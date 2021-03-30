@@ -9,12 +9,14 @@ const Login = ({
             <input
                 type="email"
                 placeholder="Email"
+                autoComplete="email"
                 value={email}
                 onChange={handleEmailChange}
             />
             <input
                 type="password"
                 placeholder="Password"
+                autoComplete="current-password"
                 value={password}
                 onChange={handlePasswordChange}
             />

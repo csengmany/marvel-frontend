@@ -11,6 +11,10 @@ const Header = ({
     setDisplayModal,
     userToken,
     setUser,
+    limit,
+    setLimit,
+    setPage,
+    server,
 }) => {
     //create intemerdiate to launch search when user submit the search
     const [textInput, setTextInput] = useState("");
@@ -26,9 +30,18 @@ const Header = ({
                     src={logo}
                     alt="marvel logo"
                     className="logo"
-                    onClick={() => history.push("/")}
+                    onClick={() => {
+                        history.push("/");
+                        setPage(1);
+                        setLimit(10);
+                    }}
                 />
-                <Menu userToken={userToken} />
+                <Menu
+                    userToken={userToken}
+                    setPage={setPage}
+                    limit={limit}
+                    setLimit={setLimit}
+                />
 
                 <form
                     className="search-input"
@@ -53,6 +66,7 @@ const Header = ({
                     userToken={userToken}
                     displayModal={displayModal}
                     setDisplayModal={setDisplayModal}
+                    server={server}
                 />
             </div>
         </header>

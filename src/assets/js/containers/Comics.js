@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import ComicCard from "../components/ComicCard";
 import Limit from "../components/Limit";
+import Loader from "../components/Loader";
 import Pages from "../components/Pages";
 
 const Comics = ({
@@ -12,6 +13,7 @@ const Comics = ({
     userId,
     setDisplayModal,
     userData,
+    server,
 }) => {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -23,9 +25,11 @@ const Comics = ({
         const fetchData = async () => {
             try {
                 const response = await axios.get(
-                    `https://cathy-marvel-backend.herokuapp.com/comics?title=${search}&page=${page}&limit=${limit}`
+                    `${server}/comics?title=${search}&skip=${
+                        (page - 1) * limit
+                    }&limit=${limit}`
                 );
-                console.log("data comics page", response.data);
+
                 setData(response.data);
                 if (data.count) {
                     setMaxPage(Math.ceil(response.data.count / limit));
@@ -36,13 +40,13 @@ const Comics = ({
             }
         };
         fetchData();
-    }, [setIsLoading, search, page, setPage, data.count, limit]);
+    }, [setIsLoading, search, page, setPage, data.count, limit, server]);
 
     return isLoading ? (
-        <h1>Loading...</h1>
+        <Loader />
     ) : (
         <div className="comics-container">
-            <h1>COMICS</h1>
+            <h1>COMICS LIST</h1>
             <div className="comics">
                 {data.results.length > 0 ? (
                     data.results.map((comic, index) => {
@@ -54,6 +58,7 @@ const Comics = ({
                                 userId={userId}
                                 setDisplayModal={setDisplayModal}
                                 userData={userData}
+                                server={server}
                             />
                         );
                     })

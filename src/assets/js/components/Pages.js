@@ -4,16 +4,13 @@ const Pages = ({ maxPage, setPage, page }) => {
     return (
         <div className="pages">
             {page > 1 && (
-                <div>
+                <div
+                    onClick={() => {
+                        setPage(page - 1);
+                    }}
+                >
                     <FontAwesomeIcon icon="caret-left" />
-                    <button
-                        className="btn-txt"
-                        onClick={() => {
-                            setPage(page - 1);
-                        }}
-                    >
-                        PREV
-                    </button>
+                    <button className="btn-txt">PREV</button>
                 </div>
             )}
             {new Array(maxPage).fill(1).map((item, index) => {
@@ -72,15 +69,12 @@ const Pages = ({ maxPage, setPage, page }) => {
             })}
 
             {page < maxPage && (
-                <div>
-                    <button
-                        className="btn-txt"
-                        onClick={() => {
-                            setPage(page + 1);
-                        }}
-                    >
-                        NEXT
-                    </button>
+                <div
+                    onClick={() => {
+                        setPage(page + 1);
+                    }}
+                >
+                    <button className="btn-txt">NEXT</button>
                     <FontAwesomeIcon icon="caret-right" />
                 </div>
             )}

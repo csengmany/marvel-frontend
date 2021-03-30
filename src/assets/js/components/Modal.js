@@ -5,7 +5,13 @@ import { useHistory } from "react-router-dom";
 import Signup from "./Signup";
 import Login from "./Login";
 
-const Modal = ({ setUser, setDisplayModal, displayModal, userToken }) => {
+const Modal = ({
+    setUser,
+    setDisplayModal,
+    displayModal,
+    userToken,
+    server,
+}) => {
     //state for input form
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
@@ -51,14 +57,14 @@ const Modal = ({ setUser, setDisplayModal, displayModal, userToken }) => {
                 try {
                     if (signupForm) {
                         const response = await axios.post(
-                            "https://cathy-marvel-backend.herokuapp.com/user/signup",
+                            `${server}/user/signup`,
                             {
                                 email: email,
                                 username: username,
                                 password: password,
                             }
                         );
-                        console.log(response);
+
                         if (response.data.token && response.data._id) {
                             setUser(response.data.token, response.data._id);
                             emptyFields();
@@ -66,10 +72,10 @@ const Modal = ({ setUser, setDisplayModal, displayModal, userToken }) => {
                         }
                     } else {
                         const response = await axios.post(
-                            "https://cathy-marvel-backend.herokuapp.com/user/login",
+                            `${server}/user/login`,
                             { email: email, password: password }
                         );
-                        console.log(response);
+
                         if (response.data.token && response.data._id) {
                             setUser(response.data.token, response.data._id);
                             emptyFields();
