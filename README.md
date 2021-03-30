@@ -3,8 +3,11 @@
 ### Overview
 
 This website is about Marvel universe, browse lists of characters and comics. Sign up and log in to access favorites: you can add characters or comics to your favorites list.
-Link to website : [https://marvel-cathy.netlify.app/](https://marvel-cathy.netlify.app/)
-Backend repository : [https://github.com/csengmany/marvel-backend](https://github.com/csengmany/marvel-backend)
+
+<br>
+
+-   Link to website : [https://marvel-cathy.netlify.app/](https://marvel-cathy.netlify.app/)
+-   Backend repository : [https://github.com/csengmany/marvel-backend](https://github.com/csengmany/marvel-backend)
 
 ### Screenshots
 
@@ -46,7 +49,7 @@ Clone this repository :
 
 ```
 git clone https://github.com/csengmany/marvel-frontend.git
-cd tellmemore-frontend
+cd marvel-frontend
 ```
 
 Install packages :
