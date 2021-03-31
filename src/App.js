@@ -22,6 +22,7 @@ import {
     faTimes,
     faBookmark as fasFaBookmark,
     faBookOpen,
+    faBars,
 } from "@fortawesome/free-solid-svg-icons";
 import { faBookmark as farFaBookmark } from "@fortawesome/free-regular-svg-icons";
 import Loader from "./assets/js/components/Loader";
@@ -32,7 +33,8 @@ library.add(
     faSearch,
     faTimes,
     fasFaBookmark,
-    faBookOpen
+    faBookOpen,
+    faBars
 );
 
 function App() {

@@ -572,8 +572,125 @@ div > button {
 .favorites-container > .comics > span {
     padding: 0;
 }
+.xs {
+    display: none;
+}
 
-@media (max-width: 435px) {
+@media (max-width: 927px) {
+    .not-xs {
+        display: none;
+    }
+
+    header {
+        padding: 0;
+        margin: 0;
+    }
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .xs {
+        display: flex;
+        padding: 0;
+        margin: 0 20px;
+    }
+    .xs-nav li {
+        width: min-content;
+    }
+    .logo {
+        height: 50px;
+        padding: 0;
+        margin: 0;
+    }
+    .xs-nav {
+        position: absolute;
+        background-color: var(--bg);
+        top: 0px;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: space-between;
+        z-index: 2;
+        padding: 10px;
+    }
+    .xs-nav nav {
+        margin-top: 20px;
+    }
+    .xs-nav button:first-child {
+        margin-top: 10px;
+    }
+    nav > li :hover {
+        padding: 0;
+        margin: 0;
+    }
+    .xs-nav button:first-child:hover {
+        color: var(--primary);
+    }
+    .modal-btn {
+        margin: 0 auto;
+    }
+    .xs-nav ul {
+        display: flex;
+        flex-direction: column;
+    }
+    .xs-times:hover {
+        color: var(--primary);
+    }
+    .xs-nav div {
+        margin-top: 10px;
+    }
+    .header a {
+        font-family: "Bangers", cursive;
+        font-size: 25px;
+    }
+    li,
+    a {
+        display: inline;
+    }
+    li a {
+        padding: 0;
+        height: 40px;
+    }
+    li a:hover {
+        background-color: var(--bg);
+        color: var(--primary);
+    }
+
+    .characters {
+        max-width: 560px;
+        margin: 0 auto;
+    }
+    .xs-search {
+        position: absolute;
+        background-color: var(--bg);
+        top: 0px;
+        width: 100vw;
+        height: max-content;
+        display: flex;
+        justify-content: space-between;
+        z-index: 2;
+        padding: 10px;
+    }
+    .xs-search input {
+        width: 60vw;
+    }
+}
+@media (max-width: 445px) {
+    .characters-container {
+        padding: 0;
+        margin: 0;
+    }
+    .characters {
+        width: 100vw;
+        padding: 0;
+        margin: 0;
+        justify-content: center;
+    }
+    .character-card {
+        margin-left: 20px;
+    }
+
     .comic-card {
         width: 100%;
         height: auto;
@@ -605,5 +722,14 @@ div > button {
         padding: 10px;
         margin-top: 10px;
         font-weight: lighter;
+    }
+    .pages-limit {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .footer {
+        font-size: 12px;
     }
 }
