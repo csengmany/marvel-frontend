@@ -673,7 +673,7 @@ div > button {
         padding: 10px;
     }
     .xs-search input {
-        width: 60vw;
+        width: 80vw;
     }
 }
 @media (max-width: 445px) {

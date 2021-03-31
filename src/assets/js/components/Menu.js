@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-const Menu = ({ userToken, setLimit, setPage }) => {
+const Menu = ({ userToken, setLimit, setPage, setDisplayXs }) => {
     return (
         <nav>
             <ul>
@@ -9,6 +9,7 @@ const Menu = ({ userToken, setLimit, setPage }) => {
                         onClick={() => {
                             setPage(1);
                             setLimit(10);
+                            setDisplayXs(false);
                         }}
                     >
                         CHARACTERS
@@ -20,6 +21,7 @@ const Menu = ({ userToken, setLimit, setPage }) => {
                         onClick={() => {
                             setPage(1);
                             setLimit(10);
+                            setDisplayXs(false);
                         }}
                     >
                         COMICS
@@ -27,7 +29,12 @@ const Menu = ({ userToken, setLimit, setPage }) => {
                 </li>
                 {userToken && (
                     <li>
-                        <Link to="/favorites">FAVORITES</Link>
+                        <Link
+                            to="/favorites"
+                            onClick={() => setDisplayXs(false)}
+                        >
+                            FAVORITES
+                        </Link>
                     </li>
                 )}
             </ul>

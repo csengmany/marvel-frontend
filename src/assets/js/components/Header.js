@@ -62,6 +62,7 @@ const Header = ({
                                 setPage={setPage}
                                 limit={limit}
                                 setLimit={setLimit}
+                                setDisplayXs={setDisplayXs}
                             />
                         </div>
                         <FontAwesomeIcon
