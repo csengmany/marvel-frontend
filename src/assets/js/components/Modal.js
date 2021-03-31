@@ -11,6 +11,7 @@ const Modal = ({
     displayModal,
     userToken,
     server,
+    setDisplayXs,
 }) => {
     //state for input form
     const [email, setEmail] = useState("");
@@ -69,6 +70,7 @@ const Modal = ({
                             setUser(response.data.token, response.data._id);
                             emptyFields();
                             setDisplayModal("");
+                            setDisplayXs(false);
                         }
                     } else {
                         const response = await axios.post(
@@ -80,6 +82,7 @@ const Modal = ({
                             setUser(response.data.token, response.data._id);
                             emptyFields();
                             setDisplayModal("");
+                            setDisplayXs(false);
                         }
                     }
                 } catch (error) {
