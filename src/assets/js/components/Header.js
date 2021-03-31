@@ -62,6 +62,7 @@ const Header = ({
                                 setPage={setPage}
                                 limit={limit}
                                 setLimit={setLimit}
+                                displayXs={displayXs}
                                 setDisplayXs={setDisplayXs}
                             />
                         </div>
